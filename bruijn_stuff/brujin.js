@@ -152,10 +152,11 @@ function graphHasPath(){
             const deltaEdges=numberOfIncomingEdges(i)-numberOfOutgoingEdges(i);
             if(deltaEdges==1){
                 positive++;
-                starterNode=i;
+                
             }
             if(deltaEdges==-1){
                 negativeOut++;
+                starterNode=i;
             }
         }
         return positive==negativeOut && positive==1;
