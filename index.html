@@ -1,7 +1,7 @@
 <head>
     <title>Calculators and links</title>
 <script>
-let embedPage;
+let embedPage; 
 function start(){
     embedPage=document.getElementById("embedPage");
 }
@@ -93,7 +93,7 @@ function fn2(){
 function fn3(){
     rst();
 
-   // embedPage.src="http://rna.informatik.uni-freiburg.de/Teaching/index.jsp?toolName=Needleman-Wunsch";
+   //old link embedPage.src="http://rna.informatik.uni-freiburg.de/Teaching/index.jsp?toolName=Needleman-Wunsch";
     embedPage.style="width:0px; height :0px;";
     document.getElementById("funny").innerHTML='<object type="text/html" data="alignment_stuff/sequence_aligner.html" style="width: 100%;height: 100%;" ></object>';
     document.getElementById("randomTxt").onclick=function(){rndInsert(3)};
