@@ -136,6 +136,16 @@ body{
     width: fit-content;
     padding: 2px;
 }
+#mismInsert{
+    background-color: yellow;
+    color: darkgreen;
+    margin:3px;
+    width: 19%;
+}
+#maxError{
+    width:20%;
+    height:70%;
+}
     </style>
     <script src="bwa.js" ></script>
 </head>
@@ -164,6 +174,7 @@ body{
     <div style="display: flex; flex-wrap:wrap">
         <input id="pattern" type="text">
         <div class="startButton" onclick="inexactMatching()">Inexact macthing (with bwa)</div>
+        <div id="mismInsert">  Mismatches allowed   <input id="maxError" min="0" value="1" type="number"></div>
     </div>
     <div id="matchingZone"></div>
   </body>

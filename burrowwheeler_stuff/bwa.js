@@ -274,7 +274,7 @@ function inexactMatching(){
     bwtWord=bwt;
     occOfL=createOccTab(bwt);
     cccc=createC(bwt);
-    const maxDifferences=1;//todo get from dom
+    const maxDifferences=document.getElementById("maxError").value;//todo get from dom
     const D=1;
     let errorFound=[];
     const bwtAr=bwt.split("");
