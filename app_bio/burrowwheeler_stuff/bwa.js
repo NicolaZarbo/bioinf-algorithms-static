@@ -1,4 +1,5 @@
-let bwt;
+let bwt=[];
+let pointTable;
 
 function fnStart() {
     rst();
@@ -7,12 +8,31 @@ function fnStart() {
     for(let i=0; i<input.length;i++){
         rotations[i]=rotation(input, i);
     }
-    rotations.sort();
+    //rotations.sort();
+    computeRotations(rotations)
     showRotations(rotations);
     bwt=burrowWheelerTransform(rotations);
     buildBWT(bwt);
     buildC(input);
     buildOccTable(bwt.split(""));
+}/**
+ * sorts rotations and saves the original pointer of the word
+ */
+function computeRotations(rotations){
+    pointTable=[];
+    let tempPoints=[];
+    for (let i = 0; i < rotations.length; i++) {
+        tempPoints[i]=[];
+        tempPoints[i]=[rotations[i],i].slice();
+    }
+    tempPoints.sort(function(a, b) {
+        return ((a[0] < b[0]) ? -1 : ((a[0] == b[0]) ? 0 : 1));
+    });
+    for (let i = 0; i < rotations.length; i++) {
+        pointTable[i] = tempPoints[i][1];
+        rotations[i]=tempPoints[i][0];
+    }
+    //alert(rotations);
 }
 
 function burrowWheelerTransform(rotations){
@@ -38,16 +58,22 @@ function showRotations(rotations){
         const element =document.createElement("div");
         element.className="occ-cell";
         element.innerText=rotations[i];
-        element.style="grid-row:"+(i+1)+"; grid-column:1";
-        container.appendChild(element);
-    }
-    for (let i = 0; i < rotations.length; i++) {
-        const element =document.createElement("div");
-        element.className="occ-cell";
-        element.innerText=i;
         element.style="grid-row:"+(i+1)+"; grid-column:2";
         container.appendChild(element);
 
+
+        const originalIndex =document.createElement("div");
+        originalIndex.className="occ-cell head-cell";
+        originalIndex.innerText=i;
+        originalIndex.style="grid-row:"+(i+1)+"; grid-column:3";
+        container.appendChild(originalIndex);
+
+
+        const index =document.createElement("div");
+        index.className="occ-cell head-cell";
+        index.innerText=pointTable[i];
+        index.style="grid-row:"+(i+1)+"; grid-column:1";
+        container.appendChild(index);
     }
 }
 function createOccTab(bwt){
@@ -75,7 +101,7 @@ function buildOccTable(bwt){
     for (let i = 0; i < letters.length; i++) {
         let letter = letters[i];
         let cell=document.createElement("div");
-        cell.className="occ-cell";
+        cell.className="occ-cell head-cell";
         cell.style="grid-row:"+(i+3)+"; grid-column:1;";
         cell.textContent=letter;
         occTable.appendChild(cell);
@@ -83,13 +109,13 @@ function buildOccTable(bwt){
     for(let k=0;k<bwt.length;k++){
         let letter=bwt[k];
         let cell=document.createElement("div");
-            cell.className="occ-cell";
-            cell.style="grid-row:1; grid-column:"+(k+2)+";";
+            cell.className="occ-cell head-cell";
+            cell.style="grid-row:2; grid-column:"+(k+2)+";";
             cell.textContent=letter;
             occTable.appendChild(cell);
         let cella=document.createElement("div");
             cella.className="occ-cell";
-            cella.style="grid-row:2; grid-column:"+(k+2)+";";
+            cella.style="grid-row:1; grid-column:"+(k+2)+";";
             cella.textContent=k;
             occTable.appendChild(cella);
         let row=3;
@@ -146,7 +172,7 @@ function buildC(string){
     
     for (let i = 0; i < letters.length; i++) {
         let letterCell = document.createElement("div");
-        letterCell.className="occ-cell";
+        letterCell.className="occ-cell head-cell";
         letterCell.style="grid-row-start:1; grid-row-end:1"
         letterCell.innerText=letters[i];
         let cellC=document.createElement("div");
@@ -239,7 +265,7 @@ function rangeInFcolumn(char){
 }
 
 function inexactMatching(){
-    if(bwt==null){
+    if(bwt.length==0){
         fnStart();
     }
     bwtWord=bwt;
@@ -284,13 +310,20 @@ function inexactMatching(){
 
 function printAlingments(matches, pointers){
     const zone=document.getElementById("matchingZone");
+    let decentMatches=0;
+    
     for (let i = 0; i < matches.length; i++) {
         let el=document.createElement("div");
        if(matches[i][0]!="/"){
-            el.innerText="matched => "+matches[i].reverse().join("")+" position : "+pointers[i][1]+"; mismatches : "+pointers[i][2]+"    ";
+            decentMatches++;
+            el.innerText="matched => '"+matches[i].reverse().join("")+"' position : "+pointTable[pointers[i][1]]+"; mismatches : "+pointers[i][2]+"    ";
             el.className="match";
             zone.appendChild(el);
        }
     }
+    let info=document.createElement("div");
+    info.className="match head-cell";
+    info.textContent="Number of matches : "+decentMatches;
+    zone.insertBefore(info,zone.children[0]);
 } 
 
