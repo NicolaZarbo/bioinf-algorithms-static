@@ -3,18 +3,19 @@
     <script src="seq_aligner.js"></script>
 <style>
 #appZone{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 3px;
     width: auto;
     min-height: 50%;
     height: auto;
     padding: 8px;
     background-color: lightgreen;
-    justify-content: space-around;
-    align-items: baseline;
     box-shadow: 0px 0px 3px 1px rosybrown;
-
+    justify-items: center;
+    align-items: center;
 }
+
 #comands{
     width: 40%;
     padding: 10px;
@@ -112,6 +113,12 @@
     border-color:#4607fc; 
     box-shadow:0 0 1px 1px #4607fc;
 }
+.tcolumn{
+    border: solid darkgreen;
+    padding: 10px;
+    width: -webkit-fill-available;
+    width: -moz-available;
+}
 
 
 </style>
@@ -128,7 +135,8 @@
     
 </div>
 <div id="appZone">
-    <div id="points">
+    <div class="tcolumn" style="grid-row:1;grid-column:1">Scores</div>
+    <div style="grid-row:2;grid-column:1" id="points">
         <p class='txt'> mismatch score</p>
         <input id="mismatch" value="-1" type="number" max="0">
         <p class='txt'>Insertion/deletion score </p>
@@ -136,10 +144,12 @@
         <p class='txt'> match score</p>
         <input id="match" min="1" value="1" type="number">
     </div>
-    <div id="tableZone">
+    <div class="tcolumn" style="grid-row:1;grid-column:2">Alignment Matrix</div>
+    <div style="grid-row:2;grid-column:2" id="tableZone">
 
     </div>
-    <div  id="alignments">
+    <div class="tcolumn" style="grid-row:1;grid-column:3">Matches</div>
+    <div style="grid-row:2;grid-column:3"  id="alignments">
     </div>
 </div>
 </body>
