@@ -1,0 +1,132 @@
+<head>
+    <script src="brujin.js"></script>
+    <title>de brujin</title>
+    <style>
+        #graphZone{
+            background-color: #C69581;
+            box-shadow: 0px 0px 3px 1px rosybrown;
+            padding: 25px;
+            width: auto;
+            height: auto;
+            min-height: 50%;           
+            display: grid;
+            align-content: space-between;
+            justify-content: space-around;
+            justify-items: center;
+        }
+.node:hover {
+    border: dotted;
+}
+
+.node {
+    text-align: center;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    border: solid;
+    border-width: 3px;
+    border-color: #3634af;
+    background-color: #B5ADF3;
+    cursor: pointer;
+}
+        .edge{
+            border-color:#7DAD3C;
+        }
+        .button{
+            cursor: pointer;
+            width: fit-content;
+            padding:3px;
+            margin: 3px;
+            height: auto;
+            background-color: #F681BE;
+            border:solid 1px #1e4d4f;
+            border-width: 1px;
+
+        }
+.arrowContainer{
+    pointer-events: none;
+    position:absolute;
+    z-index: 10;
+    width: auto;
+}
+.arrow{    
+    border-left: 20px solid green;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-top: 20px solid transparent;
+    display: inline-block;
+    position: relative;
+    right: -40px;}
+.stick{
+    position: relative;
+    top: 22px;
+    left: 0px;
+    border: 2px solid green;
+    width: 80px;
+    height:0px;
+}
+#brate{
+    position: relative;
+}
+#graphtxt{
+    background-color: #B5ADF3;
+    color: #3634af;
+    width: fit-content;
+    padding: 10px;
+    font-family: consolas;
+}
+#graphInfo{
+    padding:10px;
+    text-align: center;
+    width: 200px;
+    color: green;
+    border:solid green 1px;
+    background-color: #B5ADF3;
+}
+#comands{
+    display: inline-flex;
+    background-color: #B5ADF3;
+    padding: 10px;
+    box-shadow: 0px 0px 1px 1px #B5ADF3;
+}
+#pathZone{
+    background-color: #C69581;
+    width: fit-content;
+    padding: 10px;
+    font-size: larger;
+    display: flex;
+    flex-wrap: wrap;
+}
+.comand-container{
+    padding:10px;
+    display: grid;
+    height: 100%;
+    box-shadow: 0 0 2px 1px #3634af;
+}
+    </style>
+</head>
+<body>
+    <div id="comands">
+        <div class="comand-container"><p>how many columns of nodes?</p>
+        <input type="number" id="columns"></div>
+        
+        <div class="comand-container"><p>how many rows of nodes?</p>
+        <input type="number" id="rows"></div>
+
+        <div class="comand-container" name="directional" style="height: auto;">Directional graph? <input type="checkbox" id="isNonDirectional">
+        </div>
+    </div>
+    
+    <div id="brate"></div>
+    <div class="button" onclick="graphCreator()"> generate </div>
+    <div id="graphZone">
+        
+    </div>
+    <div id="graphInfo"></div>
+    <div style="display: flex; flex-wrap: wrap; justify-items: center;">
+        <div class="button" onclick="printGraphTxt()">txt boolean matrix</div>
+        <div class="button" onclick="printPath()"> print the path</div>    
+    </div>
+    <div id="pathZone"></div>
+    <div id="graphtxt"></div>
+</body>
