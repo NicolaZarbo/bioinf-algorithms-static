@@ -218,7 +218,9 @@ function decode(){
     cccc=createC(bwtWord.join(""));
     occOfL=createOccTab(bwtWord);
     const startIndex=bwtWord.indexOf("$");
-    let result="$"+decodeStep(lfMap(startIndex));
+    let result=decodeStep(lfMap(startIndex));
+    if (result.indexOf("$")!=result.lastIndexOf("$")||result.indexOf("$")==-1)
+        {result=")...ppuS toN("+result;}
     document.getElementById("reverseBwt").innerHTML =('<div style="font-size: small;">REVERSE:</div>'+ result.split("").reverse().join("").replace("$",""));
 }
 function lfMap(index){
@@ -266,7 +268,8 @@ function rangeInFcolumn(char){
 
 function inexactMatching(){
     if(bwt.length==0){
-        fnStart();
+        document.getElementById("matchingZone").innerHTML="Please encode a string before";
+        return;
     }
     bwtWord=bwt;
     occOfL=createOccTab(bwt);
@@ -310,6 +313,7 @@ function inexactMatching(){
 
 function printAlingments(matches, pointers){
     const zone=document.getElementById("matchingZone");
+    zone.innerHTML="";
     let decentMatches=0;
     
     for (let i = 0; i < matches.length; i++) {

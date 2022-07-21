@@ -3,7 +3,7 @@
     <title>de brujin</title>
     <style>
         #graphZone{
-            background-color: #C69581;
+            background-color: lightgreen;
             box-shadow: 0px 0px 3px 1px rosybrown;
             padding: 25px;
             width: auto;
@@ -38,7 +38,8 @@
             padding:3px;
             margin: 3px;
             height: auto;
-            background-color: #F681BE;
+            background-color: green;
+            color: white;
             border:solid 1px #1e4d4f;
             border-width: 1px;
 
@@ -69,8 +70,8 @@
     position: relative;
 }
 #graphtxt{
-    background-color: #B5ADF3;
-    color: #3634af;
+    background-color: #5BC5B5;
+    color: #1e4d4f;
     width: fit-content;
     padding: 10px;
     font-family: consolas;
@@ -79,18 +80,17 @@
     padding:10px;
     text-align: center;
     width: 200px;
-    color: green;
-    border:solid green 1px;
-    background-color: #B5ADF3;
+    color: #1e4d4f;
+    border:solid green ;
+    background-color: #5BC5B5;
 }
 #comands{
     display: inline-flex;
-    background-color: #B5ADF3;
-    padding: 10px;
+    background-color: #5BC5B5;
     box-shadow: 0px 0px 1px 1px #B5ADF3;
 }
 #pathZone{
-    background-color: #C69581;
+    background-color: lightgreen;
     width: fit-content;
     padding: 10px;
     font-size: larger;
@@ -100,17 +100,17 @@
 .comand-container{
     padding:10px;
     display: grid;
-    height: 100%;
+    height: auto;
     box-shadow: 0 0 2px 1px #3634af;
 }
     </style>
 </head>
 <body>
     <div id="comands">
-        <div class="comand-container"><p>how many columns of nodes?</p>
+        <div class="comand-container"><p>columns of nodes</p>
         <input type="number" id="columns"></div>
         
-        <div class="comand-container"><p>how many rows of nodes?</p>
+        <div class="comand-container"><p>rows of nodes</p>
         <input type="number" id="rows"></div>
 
         <div class="comand-container" name="directional" style="height: auto;">Directional graph? <input type="checkbox" id="isNonDirectional">

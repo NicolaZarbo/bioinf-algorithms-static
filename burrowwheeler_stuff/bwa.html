@@ -2,30 +2,33 @@
     <title>bwa</title>
     
     <style>
-        body{
-            margin:0px;
-            padding:0px;
-        }
-        #startButton{
-            background-color:green;
-            width:50px;
-            height:30px;
-            color:white;
-            text-align:center;
-            padding: 3px;
-            margin: 3px;
-        }
-        #decodeButton{
-            background-color:yellow;
-            width:50px;
-            height:30px;
-            color:darkgreen;
-            text-align:center;
-            padding: 3px;
-            margin: 3px;
-        }
-        #bwa-container{
-            display: grid;
+body{
+    margin:0px;
+    padding:0px;
+}
+.startButton{
+    background-color:green;
+    min-width:50px;
+    width:fit-content;
+    min-height:30px;
+    height:fit-content;
+    color:white;
+    text-align:center;
+    padding: 3px;
+    margin: 3px;
+}
+#decodeButton{
+    background-color:yellow;
+    width:50px;
+    height:30px;
+    color:darkgreen;
+    text-align:center;
+    padding: 3px;
+    margin: 3px;
+}
+#bwa-container{
+    display: grid;
+    box-shadow: 0px 0px 3px 1px rosybrown;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 99%;
     background-color: lightgreen;
@@ -36,14 +39,13 @@
     padding: 4px;
     grid-row-gap: 47px;
     grid-column-gap: 2px;
-        }
-        #bwt{
-        grid-row: 2;
-        grid-column: 2;
-
-        }
-        #rotations{
-            width: fit-content;
+}
+#bwt{
+    grid-row: 2;
+    grid-column: 2;
+}
+#rotations{
+    width: fit-content;
     display: grid;
     grid-template-columns: auto;
     align-items: center;
@@ -52,21 +54,19 @@
     grid-column: 1;
 }
         
-        #occ{
-        display:grid;        
-        align-items: center;
-        justify-items: center;
-        grid-row: 2;
-        grid-column: 3;
-        width: -webkit-fill-available;
-        width: -moz-available;
-        justify-items: stretch;
-        justify-content: center;
-
-
-        }
-        #C{
-            display: grid;
+#occ{
+    display:grid;        
+    align-items: center;
+    justify-items: center;
+    grid-row: 2;
+    grid-column: 3;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    justify-items: stretch;
+    justify-content: center;
+}
+#C{
+    display: grid;
     grid-row: 2;
     grid-template-rows: 1fr 1fr;
     width: 40px;
@@ -77,16 +77,15 @@
     width: -moz-available;
     justify-items: stretch;
     justify-content: center;
-
-        }
-    .occ-cell{
+}
+.occ-cell{
     color: darkgreen;
     border: solid 1px;
     padding: 6px;
-    }
-    .head-cell{
-        background-color: yellow;
-    }
+}
+.head-cell{
+    background-color: yellow;
+}
 .tcolumn{
     border: solid darkgreen;
     padding: 10px;
@@ -98,12 +97,12 @@
     text-align: center;
     font-size: xx-large;
     width: auto;
+    max-width: 60%;
     min-height: 30px;
     background-color: lightgreen;
     border: solid darkgreen 3px;
     left: 20%;
-    top: 30px;
-    position: fixed;
+    position: relative;
 }
 #ppp{
     color: #90ee90;
@@ -121,6 +120,14 @@
     width: fit-content;
 
 }
+#comands{
+    width: 40%;
+    padding: 10px;
+    height: auto;
+    background-color: #5bc5b5;
+    border: solid #1e4d4f;
+    margin :3px;
+}
 .match{
     color:#008000;
     font-size: larger;
@@ -131,13 +138,16 @@
     <script src="bwa.js" ></script>
 </head>
 <body>
-    <p id="ppp">"$" is the SOL symbol</p>
-    <input type="text" name="text" id="input"></input>
-    <div style="display: flex; flex-wrap:wrap"> 
-        <div id="startButton" onclick="fnStart()">encode</div>
-        <div id="decodeButton" onclick="decode()">decode</div>
-        <div id="reverseBwt"></div>
+    <div id="comands">
+        <p id="ppp">"$" is the SOL symbol</p>
+        <input type="text" name="text" id="input"></input>
+        <div style="display: flex; flex-wrap:wrap"> 
+            <div class="startButton" onclick="fnStart()">encode</div>
+            <div id="decodeButton" onclick="decode()">decode</div>
+            
+        </div>
     </div>
+    <div id="reverseBwt"><div style="font-size: small;">REVERSE:</div></div>
    
     <div id="bwa-container">
         <div class="tcolumn" style="grid-column: 1;grid-row: 1;"> Rotations</div>
@@ -149,7 +159,9 @@
       <div class="tcolumn" style="grid-column: 4;grid-row: 1;"> C()</div>
       <div id="C"></div>
     </div>
-    <input id="pattern" type="text">
-    <button onclick="inexactMatching()">aja!</button>
+    <div style="display: flex; flex-wrap:wrap">
+        <input id="pattern" type="text">
+        <div class="startButton" onclick="inexactMatching()">Inexact macthing (with bwa)</div>
+    </div>
     <div id="matchingZone"></div>
   </body>
