@@ -100,6 +100,7 @@ function drawArrow(){
     let width=Math.sqrt(vec[0]*vec[0]+vec[1]*vec[1]);
     const angle=findAngle(vec);
     const arrowMove=-width;
+    
     let basePositionx=baseCordinates[0]-(width/2)-vec[0]/2;
     if(vec[0]>0)
         {basePositionx=endCordinates[0]-(width/2)+vec[0]/2;}
@@ -125,6 +126,8 @@ function findAngle(vector){
     }
     return angle;
 }
+
+
 let hasPath;
 function writeInfo(){
     const info=document.getElementById("graphInfo");

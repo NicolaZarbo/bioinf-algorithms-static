@@ -127,6 +127,13 @@ function fn7(){
     document.getElementById("randomTxt").onclick=function(){rndInsert(5)};
 
 }
+function fn8(){
+    rst();
+    embedPage.style="width:0px; height :0px;";
+    document.getElementById("funny").innerHTML='<object type="text/html" data="msa_stuff/msa.html" style="width: 100%;height: 100%;" ></object>';
+    document.getElementById("randomTxt").onclick=function(){rndInsert(4)};
+    
+}
 function rst(){
     embedPage.style="width: 90%;height: 80%;";
     document.getElementById("funny").innerHTML="";
@@ -262,6 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <button class="app-button" onclick="fn4();">Burrow Wheeler Transform</button>
     <button class="app-button" onclick="fn5();">SuffixTree</button>
     <button class="app-button" onclick="fn7();">Bruijn</button>
+    <button class="app-button" onclick="fn8();">MSA</button>
 
     <button class="app-button" id="gitLink" onclick="fn6()">Course Git</button>
 </div>

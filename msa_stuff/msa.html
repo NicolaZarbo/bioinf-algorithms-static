@@ -1,0 +1,54 @@
+<head>
+
+    <title>mas</title>
+    <script src="msa.js"></script>
+<style>
+#comands{
+    background-color: #5BC5B5;
+    padding: 20px;
+}
+#appZone{
+    background-color: lightgreen;
+}
+.nodeButton{
+    background-color: aquamarine;
+    border-radius: 12%;
+    border: solid 2px blue;
+    text-align: center;
+    padding: 12px;
+    width: 35px;
+    z-index: 50;
+    position: relative;    
+}
+#treeZone{
+    box-shadow: 0 0 1px 1px green;
+    display: grid;
+    gap: 9px;
+    width: 60%;
+    padding: 10px;
+}
+.node-used{
+    background-color: darksalmon;
+}
+.stick{
+    border: solid 2px;
+
+}
+
+
+</style>
+</head>
+<body>
+    <h1>WORK IN PROGRESS</h1>
+<div id="comands">
+    <div> Number of strings <input onprogress="printInputZone()" onchange="printInputZone()" id="nOfWords" type="number"></div>
+    <div id="inputZone"></div>
+    <div id="treeZone"></div>
+
+</div>
+<div id="appZone">
+    <button onclick="printTree()">print txt guide tree</button>
+    <div id="txtTarget"></div>
+
+</div>
+</body>
