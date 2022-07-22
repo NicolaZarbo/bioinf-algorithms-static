@@ -119,8 +119,8 @@ function findAngle(vector){
 }
 
 function getNodeElCOrdinates(node){
-    const x=node.ownElement.getBoundingClientRect().x;
-    const y=node.ownElement.getBoundingClientRect().y;
+    const x=(node.ownElement.getBoundingClientRect().x+node.ownElement.getBoundingClientRect().right)/2;
+    const y=(node.ownElement.getBoundingClientRect().y+node.ownElement.getBoundingClientRect().bottom)/2;
     return [x,y];
 }
 function getColorForDepth(depth){
@@ -203,6 +203,101 @@ function recPrint(node){
         return node.key+"";
     }
 }
-function msa(locl){
 
+
+
+const rr=["a","c","g","t","_"];
+let words;
+let profiles;
+function msa(){
+    const root=nodeArray[nodeArray.length-1];
+    words=[];
+    for (let i = 0; i < nWords; i++) {
+        words[i]=document.getElementById("inputW"+i);
+    }
+    profiles=[];
+    for (let i = 0; i < nodeArray.length; i++) {
+        profiles[i]=[]
+        
+    }
+    recProf(root.key,-1);
 }
+function fakeProfile(word){
+    let profile =[];
+    for (let i = 0; i < word.length; i++) {
+        profile[i]=[];
+        profile[i].length=5;
+        for (let j = 0; j < rr.length; j++) {
+            probabilityOfLetter(profile[i],rr[j],1);
+        }
+    }
+    return profile;
+}
+function recProf(key1){
+    if(nodeArray[key1].depth==0 ){
+       return fakeProfile(words[key1]);
+    }
+    profiles[profiles.length]=mergeProfile(recProf(nodeArray[key1].child1), recProf(nodeArray[key1].child2) );
+    return profiles[profiles.length-1];
+}
+function mergeProfile(profile1, profile2){
+    table=[];
+    for (let i = 0; i < profile1.length; i++) {
+        table[i]=[];
+        for (let j = 0; j < profile2.length; j++) { 
+           table[i][j]=[];
+        }
+    }
+    recScoreStPr( profile1.length-1 , profile2.length-1)
+}
+
+function probabilityOfLetter(letterProb,char1,kWordUsed){
+    letterProb[rr.indexOf(char1)]+=((letterProb[rr.indexOf(char1)]*(kWordUsed-1))+1)/kWordUsed;
+}
+
+function sim1(char1,char2){//cost of change, -1 for mismatch 
+    if(char1!=char2){return 1}
+    return 0;
+}
+function Punteggio(char, profIndex){//make for double 
+    let sum=0;
+    for (let i = 0; i < rr.length; i++) {
+        sum+=sim1(char, rr[i])*prof[profIndex][i];
+    }
+}
+
+
+let wordK;
+let prof;
+let table;
+
+function recScoreStPr(ind1,ind2){//make generic using fake profiles for words
+    if(ind1==0&&ind2==0){
+        return table[ind1][ind2][0];
+    }
+
+    let matchScore=-Punteggio(wordK[ind1],ind2)+recScoreStPr(ind1-1,ind2-1,isLocal);
+    const del1Score=(-1)+recScoreStPr(ind1-1,ind2, isLocal);
+    const del2Score=-Punteggio("_",ind2)+recScoreStPr(ind1,ind2-1, isLocal);
+
+    const mexerboi=[matchScore,del1Score,del2Score];
+ 
+
+    const max=massimo(mexerboi);
+    let traces=[];
+    for (let i = 0; i < mexerboi.length; i++) {
+        if(i== mexerboi.indexOf(max,i)){
+            traces[i]=1;
+        }else {traces[i]=0;}
+    }
+    saveCellScore1(ind1,ind2,max,traces);
+    return max
+}
+
+function saveCellScore1(ind1,ind2,score,trace){
+    table[ind1][ind2][0]=score;
+    {table[ind1][ind2][1]=trace;}
+}
+//todo backtrace only one result for profiles
+
+

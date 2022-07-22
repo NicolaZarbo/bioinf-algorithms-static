@@ -21,6 +21,28 @@ function start(isLocal){
     score=0;
 }
 /**
+ * 
+ * @param {int} miss 
+ * @param {int} mat 
+ * @param {int} ins 
+ * @param {string} w1 
+ * @param {string} w2 
+ * @param {boolean} isloc 
+ */
+function getBestAlignment(miss, mat, ins, w1, w2,isloc){
+    localAlgin=isloc;
+    match=mat;
+    mismatch=miss;
+    insdel=ins;
+    word1=w1;
+    word2=w2;
+    prepareTable(isloc);
+    recScoring(table.length-1,word2.length-1,isloc);
+    score=0;
+    findBest();
+    return bestWords[0];//fixme look up
+}
+/**
  * Saves values from the user input 
  *  (word1, word2, match, mismatch, insdel)
  * 
@@ -141,7 +163,6 @@ function findBest(){
         const score=start[0];
         traceBackWord(word1.length-1,word2.length-1,0); 
     }
-    writeAlignment();
 }
 /**
  * @returns {array} array of coordinates of every cell with max score
@@ -279,6 +300,7 @@ function printTable(){
     pathcolored[0]=[];
     pathcolored[1]=[];
     findBest();
+    writeAlignment();
 
     const tab=document.getElementById("tableZone");
     tab.style="grid-template-columns:"+(word1.length)+"; grid-template-rows:"+(word2.length)+";";
