@@ -7,7 +7,7 @@ function printInputZone(){
     zone.innerHTML="";
     if(num>nWords){
         for (let i = (nWords); i < num; i++) {
-            zone.innerHTML+="<div><input pattern='[a,c,g,t]+' class='inputWords' id='inputW"+i+"' type='text'>W"+i+"</div>";
+            zone.innerHTML+="<div><input pattern='[a,c,g,t,A,C,G,T]+' class='inputWords' id='inputW"+i+"' type='text'>W"+i+"</div>";
         }
     }else{
         for(let i=nWords;i>num;i--){

@@ -2,6 +2,7 @@
     <title>sequence aligner</title>
     <script src="seq_aligner.js"></script>
 <style>
+ 
 #appZone{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -119,7 +120,18 @@
     width: -webkit-fill-available;
     width: -moz-available;
 }
+@media only screen{
+        #appZone{
+            display: block;
+        }
+        #tableZone{
+            display: grid;
+            justify-items: center;
+            align-content: center;
+            justify-content: center;
+        }
 
+    }
 
 </style>
 </head>
