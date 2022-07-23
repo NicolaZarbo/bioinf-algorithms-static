@@ -7,7 +7,7 @@ function printInputZone(){
     zone.innerHTML="";
     if(num>nWords){
         for (let i = (nWords); i < num; i++) {
-            zone.innerHTML+="<div><input class='inputWords' id='inputW"+i+"' type='text'>W"+i+"</div>";
+            zone.innerHTML+="<div><input pattern='[a,c,g,t]+' class='inputWords' id='inputW"+i+"' type='text'>W"+i+"</div>";
         }
     }else{
         for(let i=nWords;i>num;i--){
@@ -15,7 +15,7 @@ function printInputZone(){
         }
     }
     nWords=num;
-    treeGenerator(nWords);
+    treeGenerator();
 }
 
 
@@ -23,7 +23,8 @@ let nodeArray;
 let maxDepth;
 let rowsOfTreeHtml;
 
-function treeGenerator(wordNumber){
+function treeGenerator(){
+    let wordNumber=nWords;
     rowsOfTreeHtml=[];
     nodeArray=[];
     maxDepth=0;
@@ -210,12 +211,18 @@ const rr=["a","c","g","t","_"];
 let words;
 let profiles;
 let wordOfProileI;
+
 function msa(){
+    gapCost=-Number(document.getElementById("gapCost").value)
+    mismatchCost=-Number(document.getElementById("mismCost").value)
     profilesIndex=0;
     const root=nodeArray[nodeArray.length-1];
     words=[];
     for (let i = 0; i < nWords; i++) {
-        words[i]=document.getElementById("inputW"+i).value;
+        words[i]=document.getElementById("inputW"+i).value.toLowerCase();
+        if(words[i].length==0){
+            return //todo add a message for user
+        }
     }
     profiles=[];
     wordOfProileI=[]
@@ -230,6 +237,7 @@ function msa(){
 function printProfile(finalKey){
     const len=profiles[finalKey].length;
     const tab=document.getElementById("tableZone");
+    tab.innerHTML="";
     tab.style="grid-template-rows:6; grid-template-columns:"+(len+1)+";";
     for (let i = 0; i < len; i++) {
         const element = document.createElement("div");
@@ -280,8 +288,10 @@ function recProf(key){
     }
     key1=nodeArray[key].child1.key;
     key2=nodeArray[key].child2.key;
-    profiles[key]=mergeProfile(recProf(key1), recProf(key2) );
-    wordOfProileI[key]=wordOfProileI[key1]+wordOfProileI[key2];
+    let locak1=key1;
+    let locak2=key2;
+    profiles[key]=mergeProfile(recProf(locak1), recProf(locak2) );
+    wordOfProileI[key]=wordOfProileI[locak1]+wordOfProileI[locak2];
    // profilesIndex
     return profiles[key];
 }
@@ -294,7 +304,9 @@ function mergeProfile(prof1, prof2){
         for (let j = 0; j < profile2.length; j++) { 
            table[i][j]=[];
         }
+        
     }
+    table[0][0][1]=[0,0,0];
     recScoreStPr( profile1.length-1 , profile2.length-1)
     return buildProfileByTraceBack();
 }
@@ -324,7 +336,7 @@ function pDouble(ind1,ind2){
         sub=0;
         for (let j = 0; j < rr.length; j++) {
             if(rr[j]!=rr[i]){
-                sub+=profile1[ind1][j]
+                sub+=mismatchCost*profile1[ind1][j]
             }  
         }
         sum+=profile2[ind2][i]*sub;
@@ -333,8 +345,8 @@ function pDouble(ind1,ind2){
     return sum;
 }
 
-
-const gapCost=2;
+let mismatchCost;
+let gapCost;
 let table;
 let profile1;
 let profile2;
@@ -350,18 +362,18 @@ function recScoreStPr(ind1,ind2){
     }
     if(ind1==0){
         const score=-gapCost+recScoreStPr(ind1,ind2-1);
-        saveCellScore1(ind1,ind2,score,[0,1,0]);
+        saveCellScore1(ind1,ind2,score,[0,0,1]);
         return score
     }
     if(ind2==0){
         const score=-gapCost+recScoreStPr(ind1-1,ind2);
-        saveCellScore1(ind1,ind2,score,[0,0,1]);
+        saveCellScore1(ind1,ind2,score,[0,1,0]);
         return  score;
     }
 
     let matchScore=-pDouble(ind1-1,ind2-1)+recScoreStPr(ind1-1,ind2-1);
-    let gap1Score=(ind1==0)?-2000:-gapCost+recScoreStPr(ind1-1,ind2);  
-    let gap2Score=(ind2==0)?-2000:-gapCost+recScoreStPr(ind1,ind2-1);
+    let gap1Score=-gapCost+recScoreStPr(ind1-1,ind2);  
+    let gap2Score=-gapCost+recScoreStPr(ind1,ind2-1);
 
     
     const mexerboi=[matchScore,gap1Score,gap2Score];
@@ -420,28 +432,34 @@ const addedRowWithGap=[0,0,0,0,1]
 function profTraceBack(ind1, ind2){
   //  bestTrace[traceIndex]=cell;
     
-    //if(ind1==ind2 && ind1==0){
-      //  return
-      //}
-    createProfileRowFrom2(ind1,ind2,0)
-    traceIndex++;
+    if(ind1==ind2 && ind1==0){
+        createProfileRowFrom2(profile1[ind1],profile2[ind2]);
+        return
+    }
+    
+    
     if (table[ind1][ind2][1][0]==1){
-        
+        createProfileRowFrom2(profile1[ind1],profile2[ind2])
+        traceIndex++;
         profTraceBack(ind1-1,ind2-1);
         return;
     }
     if (table[ind1][ind2][1][1]==1){
+        createProfileRowFrom2(profile1[ind1],addedRowWithGap)
+        traceIndex++;
         profTraceBack(ind1-1,ind2);
         return;
     }
     if(table[ind1][ind2][1][2]==1){
+        createProfileRowFrom2(addedRowWithGap,profile2[ind2])
+        traceIndex++;
         profTraceBack(ind1,ind2-1);
     }
 }
 /**
  * 
- * @param {int} row index of profile1
- * @param {int} column index of profie2
+ * @param {array} row  of profile1
+ * @param {array} column  of profie2
  */
 function createProfileRowFrom2(row, column){
     nuProfile[traceIndex]=[];
@@ -449,6 +467,6 @@ function createProfileRowFrom2(row, column){
     const wordOf1=wordOfProileI[key1];
     const wordOf2=wordOfProileI[key2];
     for (let i = 0; i < rr.length; i++) {
-        nuProfile[traceIndex][i]=(profile1[row][i]*wordOf1+profile2[column][i]*wordOf2)/2;
+        nuProfile[traceIndex][i]=(row[i]*wordOf1+column[i]*wordOf2)/(wordOf1+wordOf2);
     }
 }
