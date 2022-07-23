@@ -74,6 +74,16 @@ input:invalid {
     right: -22px;
     position: relative;
 }
+.lbutton{
+   padding: 4px;
+    color:white;
+    background-color: green;
+    box-shadow: 0 0 1px 1px darkgreen;
+    width: fit-content;
+    margin: 5px;
+    cursor: pointer;
+
+}
 
 
 </style>
@@ -92,12 +102,12 @@ input:invalid {
     </div>
     <div id="tableZone"></div>
 </div>
-<button onclick="treeGenerator()">build new tree</button>
+<div class="lbutton" onclick="treeGenerator()">build new tree</div>
 <div id="treeZone"></div>
 <div id="appZone">
-    <button onclick="printTree()">print txt guide tree</button>
+    <div class="lbutton" onclick="printTree()">print txt guide tree</div>
     <div id="txtTarget"></div>
-<button onclick="msa()">global msa</button>
+<div class="lbutton" onclick="msa()">global msa</div>
 
 </div>
 </body>
