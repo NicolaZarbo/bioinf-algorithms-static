@@ -209,39 +209,86 @@ function recPrint(node){
 const rr=["a","c","g","t","_"];
 let words;
 let profiles;
+let wordOfProileI;
 function msa(){
+    profilesIndex=0;
     const root=nodeArray[nodeArray.length-1];
     words=[];
     for (let i = 0; i < nWords; i++) {
-        words[i]=document.getElementById("inputW"+i);
+        words[i]=document.getElementById("inputW"+i).value;
     }
     profiles=[];
+    wordOfProileI=[]
     for (let i = 0; i < nodeArray.length; i++) {
         profiles[i]=[]
-        
+        wordOfProileI[i]=0;
     }
-    recProf(root.key,-1);
+    recProf(root.key);
+
+    printProfile(root.key);
+}
+function printProfile(finalKey){
+    const len=profiles[finalKey].length;
+    const tab=document.getElementById("tableZone");
+    tab.style="grid-template-rows:6; grid-template-columns:"+(len+1)+";";
+    for (let i = 0; i < len; i++) {
+        const element = document.createElement("div");
+        const column=i+2;
+        element.innerText=i;
+        element.style="grid-row:1;grid-column:"+column+";";
+        element.className="table-cell head-cell";
+        tab.appendChild(element);
+        for (let j = 0; j < rr.length; j++) {
+            const weight = document.createElement("div");
+            const row=j+2;
+            weight.innerText=profiles[finalKey][i][j];
+            weight.style="grid-row:"+row+";grid-column:"+column+";";
+            weight.className="table-cell";
+            tab.appendChild(weight);
+        }        
+    }
+    for (let j = 0; j < rr.length; j++) {
+        const element =document.createElement("div");
+        const row=j+2;
+        element.innerText=rr[j];
+        element.className="table-cell head-cell";
+        element.style="grid-row:"+row+";grid-column:1;";
+        tab.appendChild(element);
+    }   
 }
 function fakeProfile(word){
     let profile =[];
     for (let i = 0; i < word.length; i++) {
-        profile[i]=[];
-        profile[i].length=5;
-        for (let j = 0; j < rr.length; j++) {
-            probabilityOfLetter(profile[i],rr[j],1);
-        }
+        profile[i]=probabilityOfLetter(word[i]);
     }
     return profile;
 }
-function recProf(key1){
-    if(nodeArray[key1].depth==0 ){
-       return fakeProfile(words[key1]);
+let key1;
+let key2;
+let profilesIndex;
+/**
+ * recursively clusters toghether the profiles, treats the original words as profile @see fakeProfile()
+ * @param {int} key key of the profile
+ * @returns 
+ */
+function recProf(key){
+    if(nodeArray[key].depth==0 ){
+        profiles[key]=fakeProfile(words[key])
+        wordOfProileI[key]=1;
+        //profilesIndex++;
+       return profiles[key];
     }
-    profiles[profiles.length]=mergeProfile(recProf(nodeArray[key1].child1), recProf(nodeArray[key1].child2) );
-    return profiles[profiles.length-1];
+    key1=nodeArray[key].child1.key;
+    key2=nodeArray[key].child2.key;
+    profiles[key]=mergeProfile(recProf(key1), recProf(key2) );
+    wordOfProileI[key]=wordOfProileI[key1]+wordOfProileI[key2];
+   // profilesIndex
+    return profiles[key];
 }
-function mergeProfile(profile1, profile2){
+function mergeProfile(prof1, prof2){
     table=[];
+    profile1=prof1;
+    profile2=prof2;
     for (let i = 0; i < profile1.length; i++) {
         table[i]=[];
         for (let j = 0; j < profile2.length; j++) { 
@@ -249,40 +296,75 @@ function mergeProfile(profile1, profile2){
         }
     }
     recScoreStPr( profile1.length-1 , profile2.length-1)
+    return buildProfileByTraceBack();
 }
-
-function probabilityOfLetter(letterProb,char1,kWordUsed){
-    letterProb[rr.indexOf(char1)]+=((letterProb[rr.indexOf(char1)]*(kWordUsed-1))+1)/kWordUsed;
-}
-
-function sim1(char1,char2){//cost of change, -1 for mismatch 
-    if(char1!=char2){return 1}
-    return 0;
-}
-function Punteggio(char, profIndex){//make for double 
-    let sum=0;
+/**
+ * this is only used when creating a fake profile from a word
+ * @param {array} letterProb the row of the new profile
+ * @param {character being checked} char1  
+ */
+function probabilityOfLetter(char){
+    let ret=[];
     for (let i = 0; i < rr.length; i++) {
-        sum+=sim1(char, rr[i])*prof[profIndex][i];
+        ret[i]=0;
     }
+    ret[rr.indexOf(char)]=1;
+    return ret;
+}
+
+/**
+ * calculates the score of cell taking into account both of the profiles' weights
+ * @param {int} ind1 index of profile1
+ * @param {int} ind2 index of profile2
+ * @returns 
+ */
+function pDouble(ind1,ind2){
+    sum=0;
+    for (let i = 0; i < rr.length; i++) {
+        sub=0;
+        for (let j = 0; j < rr.length; j++) {
+            if(rr[j]!=rr[i]){
+                sub+=profile1[ind1][j]
+            }  
+        }
+        sum+=profile2[ind2][i]*sub;
+        sub=0;
+    }
+    return sum;
 }
 
 
-let wordK;
-let prof;
+const gapCost=2;
 let table;
-
-function recScoreStPr(ind1,ind2){//make generic using fake profiles for words
+let profile1;
+let profile2;
+/**
+ * Fills the alignment matrix recursively
+ * @param {int} ind1 index of profile1
+ * @param {int} ind2 index of profile2
+ * @returns score of cel (ind1,ind2)
+ */
+function recScoreStPr(ind1,ind2){
     if(ind1==0&&ind2==0){
-        return table[ind1][ind2][0];
+        return -pDouble(ind1,ind2);
+    }
+    if(ind1==0){
+        const score=-gapCost+recScoreStPr(ind1,ind2-1);
+        saveCellScore1(ind1,ind2,score,[0,1,0]);
+        return score
+    }
+    if(ind2==0){
+        const score=-gapCost+recScoreStPr(ind1-1,ind2);
+        saveCellScore1(ind1,ind2,score,[0,0,1]);
+        return  score;
     }
 
-    let matchScore=-Punteggio(wordK[ind1],ind2)+recScoreStPr(ind1-1,ind2-1,isLocal);
-    const del1Score=(-1)+recScoreStPr(ind1-1,ind2, isLocal);
-    const del2Score=-Punteggio("_",ind2)+recScoreStPr(ind1,ind2-1, isLocal);
+    let matchScore=-pDouble(ind1-1,ind2-1)+recScoreStPr(ind1-1,ind2-1);
+    let gap1Score=(ind1==0)?-2000:-gapCost+recScoreStPr(ind1-1,ind2);  
+    let gap2Score=(ind2==0)?-2000:-gapCost+recScoreStPr(ind1,ind2-1);
 
-    const mexerboi=[matchScore,del1Score,del2Score];
- 
-
+    
+    const mexerboi=[matchScore,gap1Score,gap2Score];
     const max=massimo(mexerboi);
     let traces=[];
     for (let i = 0; i < mexerboi.length; i++) {
@@ -291,13 +373,82 @@ function recScoreStPr(ind1,ind2){//make generic using fake profiles for words
         }else {traces[i]=0;}
     }
     saveCellScore1(ind1,ind2,max,traces);
+
     return max
 }
-
+function massimo(array){
+    let max=array[0];
+    for (let i = 0; i < array.length; i++) {
+        if(array[i]>max)
+        {max = array[i];}
+    }
+    return max;
+}
+/**
+ * 
+ * @param {int} ind1 index of profile1
+ * @param {int} ind2 index of profile2
+ * @param {int} score score of cell (ind1,ind2)
+ * @param {array{int}} trace tracepointers of cell (ind1,ind2)
+ */
 function saveCellScore1(ind1,ind2,score,trace){
     table[ind1][ind2][0]=score;
     {table[ind1][ind2][1]=trace;}
 }
-//todo backtrace only one result for profiles
-
-
+let bestTrace;
+let traceIndex;
+/**
+ * 
+ * @returns a new profile made using the alignment of 2 profile
+ */
+function buildProfileByTraceBack(){
+    bestTrace=[]
+    nuProfile=[];
+    traceIndex=0;
+    profTraceBack(profile1.length-1,profile2.length-1);
+    return nuProfile.reverse();
+}
+let nuProfile;
+const addedRowWithGap=[0,0,0,0,1]
+/**
+ * this creates a profile using only one of the best alignments 
+ * (I hypothesize that there won't be multiple best, this is a approximative, I know )
+ * @param {int} ind1 index of profile1
+ * @param {int} ind2 index of profil2
+ * @returns void
+ */
+function profTraceBack(ind1, ind2){
+  //  bestTrace[traceIndex]=cell;
+    
+    //if(ind1==ind2 && ind1==0){
+      //  return
+      //}
+    createProfileRowFrom2(ind1,ind2,0)
+    traceIndex++;
+    if (table[ind1][ind2][1][0]==1){
+        
+        profTraceBack(ind1-1,ind2-1);
+        return;
+    }
+    if (table[ind1][ind2][1][1]==1){
+        profTraceBack(ind1-1,ind2);
+        return;
+    }
+    if(table[ind1][ind2][1][2]==1){
+        profTraceBack(ind1,ind2-1);
+    }
+}
+/**
+ * 
+ * @param {int} row index of profile1
+ * @param {int} column index of profie2
+ */
+function createProfileRowFrom2(row, column){
+    nuProfile[traceIndex]=[];
+   // let rowCreated;
+    const wordOf1=wordOfProileI[key1];
+    const wordOf2=wordOfProileI[key2];
+    for (let i = 0; i < rr.length; i++) {
+        nuProfile[traceIndex][i]=(profile1[row][i]*wordOf1+profile2[column][i]*wordOf2)/2;
+    }
+}

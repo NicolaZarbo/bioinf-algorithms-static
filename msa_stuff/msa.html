@@ -2,7 +2,7 @@
 
     <title>mas</title>
     <script src="msa.js"></script>
-    <script src="..\alignment_stuff\seq_aligner.js"></script>
+   
 <style>
 #comands{
     background-color: #5BC5B5;
@@ -35,6 +35,21 @@
     border: solid 2px;
 
 }
+#tableZone{
+    display: grid;
+    justify-content: center;
+}
+.table-cell{
+    background-color: lightgreen;
+    border:solid 1px;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: 20px;
+    padding: 4px;
+}
+.head-cell{
+    background-color: yellow;
+}
 
 
 </style>
@@ -50,6 +65,7 @@
 <div id="appZone">
     <button onclick="printTree()">print txt guide tree</button>
     <div id="txtTarget"></div>
-<button onclick=""></button>
+<button onclick="msa()">global msa</button>
+<div id="tableZone"></div>
 </div>
 </body>
