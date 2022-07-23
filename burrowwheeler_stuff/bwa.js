@@ -3,7 +3,7 @@ let pointTable;
 
 function fnStart() {
     rst();
-    const input="$"+document.getElementById('input').value.replace("$","");
+    const input="$"+document.getElementById('input').value.toLowerCase().replace("$","");
    let rotations=[];
     for(let i=0; i<input.length;i++){
         rotations[i]=rotation(input, i);
@@ -214,7 +214,7 @@ let bwtWord;
 let cccc;
 let occOfL;
 function decode(){
-    bwtWord=document.getElementById('input').value.split("");
+    bwtWord=document.getElementById('input').value.toLowerCase().split("");
     cccc=createC(bwtWord.join(""));
     occOfL=createOccTab(bwtWord);
     const startIndex=bwtWord.indexOf("$");
