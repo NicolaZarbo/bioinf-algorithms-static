@@ -219,7 +219,7 @@ function decode(){
     occOfL=createOccTab(bwtWord);
     const startIndex=bwtWord.indexOf("$");
     let result=decodeStep(lfMap(startIndex));
-    if (result.indexOf("$")!=result.lastIndexOf("$")||result.indexOf("$")==-1)
+    if (result.length!=bwtWord.length-1)
         {result=")...ppuS toN("+result;}
     document.getElementById("reverseBwt").innerHTML =('<div style="font-size: small;">REVERSE:</div>'+ result.split("").reverse().join("").replace("$",""));
 }
