@@ -37,14 +37,16 @@ function savePosition(event){
     { return;}
     if(pos1==0){
         var rect = document.getElementById("graphZone").getBoundingClientRect();
-        baseCordinates[0] = event.clientX - rect.left;
-        baseCordinates[1] = event.clientY - rect.top;
+        var nodeRect=event.target.getBoundingClientRect()
+        baseCordinates[0] = (nodeRect.x+nodeRect.right)/2 -rect.x;
+        baseCordinates[1] = (nodeRect.y+nodeRect.bottom)/2 -rect.y;
         pos1=1;
         return;
     }else{
         var rect = document.getElementById("graphZone").getBoundingClientRect();
-        endCordinates[0] = event.clientX - rect.left;
-        endCordinates[1] = event.clientY - rect.top;
+        var nodeRect=event.target.getBoundingClientRect()
+        endCordinates[0] = (nodeRect.x+nodeRect.right)/2-rect.x ;
+        endCordinates[1] = (nodeRect.y+nodeRect.bottom)/2-rect.y;
         drawArrow();
         pos1=0;
     }
