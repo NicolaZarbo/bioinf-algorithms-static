@@ -74,13 +74,14 @@ function generateWords(n){
     }
     return words;
 }
-
+function fn9(){
+    rst();
+    window.open("https://github.com/NicolaZarbo/bioinf-html-js-algorithms", "_blank");
+    }
 function fn1(){
     rst();
-
     window.open("https://www.cs.usfca.edu/~galles/visualization/Trie.html", "_blank");
     document.getElementById("randomTxt").onclick=function(){rndInsert(1)};
-
 }
 /*
 function fn2(){
@@ -219,6 +220,13 @@ document.addEventListener('DOMContentLoaded', function() {
         border-color: rgb(131, 41, 214);
         background-color: rgb(226, 157, 226);
     }
+    #gitLink:hover{
+        background-color: rgb(95, 21, 95);
+    }
+    #appLink{
+        border-color: rgb(131, 41, 214);
+        background-color: rgb(226, 157, 226);
+    }
     #rnd{
         contain: content;
         width: 50%;
@@ -268,6 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </head>
 <body>
 <div id="banner">
+    <button class="app-button" id="appLink" onclick="fn9()">Open Source</button>
     <button class="app-button" onclick="fn1();">Trie</button>
     <button class="app-button" onclick="fn3();">Sequence Alignment</button>
     <button class="app-button" onclick="fn4();">Burrow Wheeler Transform</button>
