@@ -77,7 +77,7 @@ function fn9(){
 function fn1(){
     rst();
     window.open("https://www.cs.usfca.edu/~galles/visualization/Trie.html", "_blank");
-    document.getElementById("randomTxt").onclick=function(){rndInsert(1)};
+  //  document.getElementById("randomTxt").onclick=function(){rndInsert(1)};
 }
 /*
 function fn2(){
@@ -93,21 +93,21 @@ function fn3(){
 
    //old link embedPage.src="http://rna.informatik.uni-freiburg.de/Teaching/index.jsp?toolName=Needleman-Wunsch";
     embedPage.style="width:0px; height :0px;";
-    document.getElementById("funny").innerHTML='<object type="text/html" data="alignment_stuff/sequence_aligner.html" style="width: 100%;height: 100%;" ></object>';
-    document.getElementById("randomTxt").onclick=function(){rndInsert(3)};
+    document.getElementById("calcCont").innerHTML='<object type="text/html" data="alignment_stuff/sequence_aligner.html" style="width: 100%;height: 100%;" ></object>';
+   // document.getElementById("randomTxt").onclick=function(){rndInsert(3)};
 
 }
 function fn4(){
     rst();
     embedPage.style="width:0px; height :0px;";
-    document.getElementById("funny").innerHTML='<object type="text/html" data="burrowwheeler_stuff/bwa.html" style="width: 100%;height: 100%;" ></object>';
-    document.getElementById("randomTxt").onclick=function(){rndInsert(4)};
+    document.getElementById("calcCont").innerHTML='<object type="text/html" data="burrowwheeler_stuff/bwa.html" style="width: 100%;height: 100%;" ></object>';
+   // document.getElementById("randomTxt").onclick=function(){rndInsert(4)};
     
 }
 function fn5(){
     rst();
     embedPage.src="https://hwv.dk/st.html";
-    document.getElementById("randomTxt").onclick=function(){rndInsert(5)};
+    //document.getElementById("randomTxt").onclick=function(){rndInsert(5)};
 
 }
 function fn6(){
@@ -118,25 +118,25 @@ function fn6(){
 function fn7(){
     rst();
     embedPage.style="width:0px; height :0px;";
-    document.getElementById("rnd").style="visibility:hidden;";
-    document.getElementById("randomTxt").style="visibility:hidden;";
+    //document.getElementById("rnd").style="visibility:hidden;";
+    //document.getElementById("randomTxt").style="visibility:hidden;";
 
-    document.getElementById("funny").innerHTML='<object type="text/html" data="bruijn_stuff/brujin.html" style="width: 100%;height: 100%;" ></object>';
-    document.getElementById("randomTxt").onclick=function(){rndInsert(5)};
+    document.getElementById("calcCont").innerHTML='<object type="text/html" data="bruijn_stuff/brujin.html" style="width: 100%;height: 100%;" ></object>';
+    //document.getElementById("randomTxt").onclick=function(){rndInsert(5)};
 
 }
 function fn8(){
     rst();
     embedPage.style="width:0px; height :0px;";
-    document.getElementById("funny").innerHTML='<object type="text/html" data="msa_stuff/msa.html" style="width: 100%;height: 100%;" ></object>';
-    document.getElementById("rnd").innerText="Accepts only {a,c,g,t}*";
-    document.getElementById("randomTxt").style="visibility:hidden;";
+    document.getElementById("calcCont").innerHTML='<object type="text/html" data="msa_stuff/msa.html" style="width: 100%;height: 100%;" ></object>';
+   // document.getElementById("rnd").innerText="Accepts only {a,c,g,t}*";
+    //document.getElementById("randomTxt").style="visibility:hidden;";
 }
 function rst(){
     embedPage.style="width: 90%;height: 80%;";
-    document.getElementById("funny").innerHTML="";
-    document.getElementById("rnd").style="visibility:visible;"
-    document.getElementById("randomTxt").style="visibility:visible;";
+    document.getElementById("calcCont").innerHTML="";
+    //document.getElementById("rnd").style="visibility:visible;"
+   // document.getElementById("randomTxt").style="visibility:visible;";
 }
 
 function rndInsert(type){

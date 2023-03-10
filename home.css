@@ -16,6 +16,24 @@ border-radius: 6px;
 border-block-width: 1px;
 
 }
+div#welcome {
+    margin: 50px;
+    font-size: x-large;
+    color: lavenderblush;
+}
+div#calcs>button {
+    font-size: xx-large;
+    margin: 2px;
+}
+div#calcs {
+    padding: 20px;
+    box-shadow: 0px 0px 8px 1px #558972;
+    background-color: lightseagreen;
+    margin-bottom: 41px;
+    width: 100%;
+    padding-left: 7%;
+
+}
 body{
     background-color: #3BB26E;
     align-content: center;
@@ -74,12 +92,13 @@ body{
     box-shadow: 0px 2px 4px 0px darkgreen;
     background-color: #1E4D4F;
     width: 100vw;
+    padding-left: 2%;
     height: auto;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: baseline;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 #stuff-container{
     padding-left: 10vw;
