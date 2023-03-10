@@ -5,6 +5,7 @@
     width: 100%;
 }
 button {
+    cursor: pointer;
     background-color: #8CD8CD;
 border-left: solid;
 border-left-width: 4px;
