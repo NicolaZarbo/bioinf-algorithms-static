@@ -30,7 +30,6 @@ div#calcs {
     box-shadow: 0px 0px 8px 1px #558972;
     background-color: lightseagreen;
     margin-bottom: 41px;
-    width: 100%;
     padding-left: 7%;
 
 }
@@ -91,7 +90,6 @@ body{
     position: sticky;
     box-shadow: 0px 2px 4px 0px darkgreen;
     background-color: #1E4D4F;
-    width: 100vw;
     padding-left: 2%;
     height: auto;
     display: flex;
