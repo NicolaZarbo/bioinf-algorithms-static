@@ -1,7 +1,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=0.7">
     <title>Calculators and links</title>
-<script>
+<script >
+    /**
 let embedPage; 
 function start(){
     embedPage=document.getElementById("embedPage");
@@ -91,7 +92,7 @@ function fn2(){
     document.getElementById("randomTxt").onclick=function(){rndInsert(2)};
 
 }
-*/
+
 function fn3(){
     rst();
 
@@ -169,9 +170,11 @@ function copy() {
 
 document.addEventListener('DOMContentLoaded', function() {
     start();
-});
+});**/
 
 </script>
+<script src="home.js"></script>
+
 <style>
     @media only screen{
 
@@ -275,6 +278,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </head>
 <body>
+    <div id="welcome"></div>
+    <div id="calcs">
+        <button class="app-button" onclick="fn1();">Trie</button>
+        <button class="app-button" onclick="fn3();">Sequence Alignment</button>
+        <button class="app-button" onclick="fn4();">Burrow Wheeler Transform</button>
+        <button class="app-button" onclick="fn5();">SuffixTree</button>
+        <button class="app-button" onclick="fn7();">Hierholzer</button>
+        <button class="app-button" onclick="fn8();">MSA</button>
+    </div>
 <div id="banner">
     <button class="app-button" id="appLink" onclick="fn9()">Open Source</button>
     <button class="app-button" onclick="fn1();">Trie</button>

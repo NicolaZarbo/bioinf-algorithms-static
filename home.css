@@ -1,0 +1,97 @@
+@media only screen{
+
+}
+#funny{
+    width: 100%;
+}
+button {
+    background-color: #8CD8CD;
+border-left: solid;
+border-left-width: 4px;
+border-color: #5BC5B5;
+font-size: larger;
+padding-top: 7;
+padding-bottom: 7;
+border-radius: 6px;
+border-block-width: 1px;
+
+}
+body{
+    background-color: #3BB26E;
+    align-content: center;
+    padding: 0;
+    margin: 0;
+}
+#embedPage{
+    width: 90%;
+    height: 80%;
+    FONT-VARIANT: JIS83;
+    border-color: #1E4D4F;
+    border: hidden;
+    box-shadow: 2px 0px 9px 0px darkgreen;
+}
+#banner button {
+    height: 60px;
+    border-width: 0px;
+    border-left-width: 4px;
+    border-radius: 0;
+    box-shadow: 0px 2px 4px 0px darkgreen;
+}
+#randomTxt{
+    color: aliceblue;
+  background-color: #4d706b; 
+}
+#gitLink{
+    border-color: rgb(131, 41, 214);
+    background-color: rgb(226, 157, 226);
+}
+#appLink:hover{
+    background-color: rgb(95, 21, 95);
+}
+#appLink{
+    border-color: rgb(131, 41, 214);
+    background-color: rgb(226, 157, 226);
+}
+#rnd{
+    contain: content;
+    width: 50%;
+    height: 115px;
+    background-color: #5BC5B5;
+    border-color: #8CD8CD;
+    border: solid;
+    color: #1E4D4F;
+    font-size: 35;
+    align-content: center;
+    margin-top: 15px;
+    margin-left: 20%;
+    margin-bottom: 15px;
+    position: sticky;
+    text-align: center;
+    cursor: copy;
+}
+#banner{
+    position: sticky;
+    box-shadow: 0px 2px 4px 0px darkgreen;
+    background-color: #1E4D4F;
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+#stuff-container{
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+p {
+    margin: 15px;
+}
+button.app-button:hover {
+    color: #5BC5B5;
+    background-color: darkgreen;
+}
+#gitLink:hover{
+background-color: rgb(95, 21, 95)
+}
