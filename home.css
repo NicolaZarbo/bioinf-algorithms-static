@@ -143,9 +143,13 @@ p {
     visibility: visible;
     position: relative;
     left: 1.5em;
+    top:-1em;
+    border: #1e4d4f;
+    border-width: 1px;
+    border-style: solid;
     background-color: cornsilk;
-    border-radius: 20%;
-    width: fit-content;
+    border-radius: 10%;
+    width: max-content;
     padding: 3px;
 }
 #foot{

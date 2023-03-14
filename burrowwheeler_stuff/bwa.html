@@ -42,6 +42,8 @@ body{
     padding: 4px;
     grid-row-gap: 47px;
     grid-column-gap: 2px;
+    animation-duration: 1s;
+
 }
 #bwt{
     grid-row: 2;
@@ -98,6 +100,8 @@ body{
     width: -moz-available;
 }
 #reverseBwt{
+    animation-timing-function: ease;
+    animation-duration: 1s;
     min-width: 20%;
     text-align: center;
     font-size: xx-large;
@@ -108,6 +112,7 @@ body{
     border: solid darkgreen 3px;
     left: 20%;
     position: relative;
+    visibility: hidden;
 }
 #ppp{
     color: #90ee90;
@@ -126,12 +131,14 @@ body{
 
 }
 #comands{
-    width: 40%;
-    padding: 10px;
+    width: fit-content;
+    padding: 1.5em;
     height: auto;
     background-color: #5bc5b5;
     border: solid #1e4d4f;
     margin :3px;
+    display: flex;
+    align-items: center;
 }
 .match{
     color:#008000;
@@ -146,6 +153,10 @@ body{
     width: 19%;
     padding-top: 2px;
 }
+#matchContainer{
+    animation-duration: 1s;
+
+}
 #maxError{
     width:20%;
     height:70%;
@@ -158,15 +169,54 @@ body{
         width: 75%;
     }
 }
+.helpBub{
+    background-color:lightgray;
+  width:1.5em;
+  height:1.3em;
+  border-radius:40%;
+  font-size:medium;
+  text-align:center;
+  cursor:help;
+  color: black;
+}
+.helpText{
+    visibility: hidden;
+    color: inherit;
+}
+.helpBub:hover .helpText{
+    visibility: visible;
+    position: relative;
+    left: 1.5em;
+    top:-1em;
+    border: #1e4d4f;
+    border-width: 1px;
+    border-style:solid ;
+    background-color: cornsilk;
+    border-radius: 10%;
+    width: max-content;
+    padding: 3px;
+}
+@keyframes comparsa1 {
+    from {visibility: hidden; transform: translateY(-30px);}
+  to {visibility: visible; transform: translateY(0px);}
+}
+@keyframes comparsa2 {
+    from {visibility: hidden; transform: translatex(-80vw);}
+    to {visibility: visible; transform: translateX(0px);}
+
+}
     </style>
+
     <script src="bwa.js" ></script>
 </head>
 <body>
     <div id="comands">
-        <p id="ppp">"$" is the SOL symbol</p>
-        <input type="text" name="text" id="input"></input>
+        
+          <input type="text" name="text" id="input"></input>
+          <div id="decoder-help" class="helpBub">?<div class="helpText">to decode a bwt string back use "$" as a start of line symbol</div></div>
+        
         <div style="display: flex; flex-wrap:wrap"> 
-            <div class="startButton" onclick="fnStart()">encode</div>
+            <div id="stButton" class="startButton" onclick="fnStart()">encode</div>
             <div id="decodeButton" onclick="decode()">decode</div>
             
         </div>
@@ -183,7 +233,7 @@ body{
       <div class="tcolumn" style="grid-column: 4;grid-row: 1;"> C()</div>
       <div id="C"></div>
     </div>
-    <div style="display: flex; flex-wrap:wrap">
+    <div id="matchContainer" style="display: flex; flex-wrap:wrap">
         <input id="pattern" type="text">
         <div class="startButton" onclick="inexactMatching()">Inexact macthing (with bwa)</div>
         <div id="mismInsert">  Mismatches allowed   <input id="maxError" min="0" value="1" type="number"></div>

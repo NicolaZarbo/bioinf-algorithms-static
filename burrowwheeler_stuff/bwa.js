@@ -1,8 +1,35 @@
 let bwt=[];
 let pointTable;
+let setting;
 
+
+function showEncoding(){
+    //document.getElementById("decodeButton").style.visibility="hidden";
+    document.getElementById("reverseBwt").style.visibility="hidden";
+    document.getElementById("decoder-help").style.visibility="hidden"; 
+    document.getElementById("reverseBwt").style.animationName=""; 
+
+    document.getElementById("matchContainer").style.animationName="comparsa2"; 
+    document.getElementById("bwa-container").style.animationName="comparsa2"; 
+    document.getElementById("matchContainer").style.visibility="visible"; 
+    document.getElementById("bwa-container").style.visibility="visible"; 
+   // document.getElementById("stButton").style.visibility="visible"; 
+}
+function showDecoding(){
+   // document.getElementById("decodeButton").style.visibility="visible";
+    document.getElementById("reverseBwt").style.animationName="comparsa1"; 
+    document.getElementById("reverseBwt").style.visibility="visible"; 
+    document.getElementById("decoder-help").style.visibility="visible"; 
+
+    document.getElementById("bwa-container").style.animationName=""; 
+    document.getElementById("matchContainer").style.animationName=""; 
+    document.getElementById("matchContainer").style.visibility="hidden"; 
+    document.getElementById("bwa-container").style.visibility="hidden"; 
+    //document.getElementById("stButton").style.visibility="hidden";
+}
 function fnStart() {
     rst();
+    showEncoding();
     const input="$"+document.getElementById('input').value.toLowerCase().replace("$","");
    let rotations=[];
     for(let i=0; i<input.length;i++){
@@ -214,6 +241,7 @@ let bwtWord;
 let cccc;
 let occOfL;
 function decode(){
+    showDecoding();
     bwtWord=document.getElementById('input').value.toLowerCase().split("");
     cccc=createC(bwtWord.join(""));
     occOfL=createOccTab(bwtWord);
@@ -244,6 +272,7 @@ function decodeStep(index){
  * resets containers
  */
 function rst(){
+    setting=false;
     let rs=["occ","C","bwt","rotations"];
     rs.forEach(element => {
         document.getElementById(element).innerHTML="";

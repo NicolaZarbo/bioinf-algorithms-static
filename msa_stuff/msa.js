@@ -63,6 +63,7 @@ function relateNodes(key){
     if(savedNode==null){
 
         savedNode=nodeArray[key];
+        savedNode.ownElement.className+=" node-selected";
     }else{
         if(key==savedNode.key){
             return;
