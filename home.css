@@ -1,10 +1,13 @@
 @media only screen{
 
 }
+html{
+    scroll-behavior: smooth;
+}
 #funny{
     width: 100%;
 }
-button {
+#calcs>button {
     cursor: pointer;
     background-color: #8CD8CD;
 border-left: solid;
@@ -15,17 +18,20 @@ padding-top: 7;
 padding-bottom: 7;
 border-radius: 6px;
 border-block-width: 1px;
+font-size: xx-large;
+margin: 2px;
 
+}
+#calcs button:hover{
+    color: #5BC5B5;
+    background-color: darkgreen;
 }
 div#welcome {
     margin: 50px;
     font-size: x-large;
     color: lavenderblush;
 }
-div#calcs>button {
-    font-size: xx-large;
-    margin: 2px;
-}
+
 div#calcs {
     padding: 20px;
     box-shadow: 0px 0px 8px 1px #558972;
@@ -54,21 +60,29 @@ body{
     border-left-width: 4px;
     border-radius: 0;
     box-shadow: 0px 2px 4px 0px darkgreen;
+     border-color: rgb(131, 41, 214);
+    background-color: rgb(226, 157, 226);
+    cursor: pointer;
+    
+}
+#applink{
+    background-image: url(github-mark.png);
+    background-size: 17%;
+    background-repeat: no-repeat;
+}
+#applink:hover{
+    background-image: url(github-mark-white.png);
+    background-size: 17%;
+    background-repeat: no-repeat;
 }
 #randomTxt{
     color: aliceblue;
   background-color: #4d706b; 
 }
-#gitLink{
-    border-color: rgb(131, 41, 214);
-    background-color: rgb(226, 157, 226);
-}
-#appLink:hover{
+#banner button:hover{
     background-color: rgb(95, 21, 95);
-}
-#appLink{
-    border-color: rgb(131, 41, 214);
-    background-color: rgb(226, 157, 226);
+    color: #5BC5B5;
+    
 }
 #rnd{
     contain: content;
@@ -106,10 +120,4 @@ body{
 p {
     margin: 15px;
 }
-button.app-button:hover {
-    color: #5BC5B5;
-    background-color: darkgreen;
-}
-#gitLink:hover{
-background-color: rgb(95, 21, 95)
-}
+

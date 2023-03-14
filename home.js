@@ -1,6 +1,6 @@
 let embedPage; 
 function start(){
-    embedPage=document.getElementById("embedPage");
+  //  embedPage=document.getElementById("embedPage");
 }
 //random words https://gist.github.com/swenzel/70beac153cdf23803f89
 var grams = {
@@ -70,43 +70,37 @@ function generateWords(n){
     }
     return words;
 }
+function showThat(key){
+   rst();
+   const target=document.getElementById("calcCont");
+   switch (key) {
+    case 1: window.open("https://www.cs.usfca.edu/~galles/visualization/Trie.html", "_blank");    break;
+    case 3: target.innerHTML='<object type="text/html" data="alignment_stuff/sequence_aligner.html" style="width: 100%;height: 100%;" ></object>';
+    break;
+    case 4: target.innerHTML='<object type="text/html" data="burrowwheeler_stuff/bwa.html" style="width: 100%;height: 100%;" ></object>';
+   break;
+   case 7:target.innerHTML='<object type="text/html" data="bruijn_stuff/brujin.html" style="width: 100%;height: 100%;" ></object>';
+   break;
+   case 8:target.innerHTML='<object type="text/html" data="msa_stuff/msa.html" style="width: 100%;height: 100%;" ></object>';
+   break; 
+   default:
+    alert("missing calculator")
+        break;
+   } 
+   reveal();
+   selected(key);
+}
+function selected(sel){
+   document.getElementById("but"+sel).style.backgroundColor="darkgreen"
+}
 function fn9(){
     rst();
     window.open("https://github.com/NicolaZarbo/bioinf-html-js-algorithms", "_blank");
     }
-function fn1(){
-    rst();
-    window.open("https://www.cs.usfca.edu/~galles/visualization/Trie.html", "_blank");
-  //  document.getElementById("randomTxt").onclick=function(){rndInsert(1)};
-}
-/*
-function fn2(){
-    rst();
 
-    embedPage.src="http://rna.informatik.uni-freiburg.de/Teaching/index.jsp?toolName=Smith-Waterman";
-    document.getElementById("randomTxt").onclick=function(){rndInsert(2)};
-
-}
-*/
-function fn3(){
-    rst();
-
-   //old link embedPage.src="http://rna.informatik.uni-freiburg.de/Teaching/index.jsp?toolName=Needleman-Wunsch";
-    embedPage.style="width:0px; height :0px;";
-    document.getElementById("calcCont").innerHTML='<object type="text/html" data="alignment_stuff/sequence_aligner.html" style="width: 100%;height: 100%;" ></object>';
-   // document.getElementById("randomTxt").onclick=function(){rndInsert(3)};
-
-}
-function fn4(){
-    rst();
-    embedPage.style="width:0px; height :0px;";
-    document.getElementById("calcCont").innerHTML='<object type="text/html" data="burrowwheeler_stuff/bwa.html" style="width: 100%;height: 100%;" ></object>';
-   // document.getElementById("randomTxt").onclick=function(){rndInsert(4)};
-    
-}
 function fn5(){
     rst();
-    embedPage.src="https://hwv.dk/st.html";
+    //embedPage.src="https://hwv.dk/st.html";
     //document.getElementById("randomTxt").onclick=function(){rndInsert(5)};
 
 }
@@ -115,27 +109,13 @@ function fn6(){
 
     window.open("https://gitlab.com/polinetwork/info3y/-/tree/master/BIOINFORMATICS%20ALGORITHMS","_blank");
 }
-function fn7(){
-    rst();
-    embedPage.style="width:0px; height :0px;";
-    //document.getElementById("rnd").style="visibility:hidden;";
-    //document.getElementById("randomTxt").style="visibility:hidden;";
-
-    document.getElementById("calcCont").innerHTML='<object type="text/html" data="bruijn_stuff/brujin.html" style="width: 100%;height: 100%;" ></object>';
-    //document.getElementById("randomTxt").onclick=function(){rndInsert(5)};
-
-}
-function fn8(){
-    rst();
-    embedPage.style="width:0px; height :0px;";
-    document.getElementById("calcCont").innerHTML='<object type="text/html" data="msa_stuff/msa.html" style="width: 100%;height: 100%;" ></object>';
-   // document.getElementById("rnd").innerText="Accepts only {a,c,g,t}*";
-    //document.getElementById("randomTxt").style="visibility:hidden;";
-}
 function rst(){
-    embedPage.style="width: 90%;height: 80%;";
+    const bottoni=document.querySelectorAll(".app-button");
+    bottoni.forEach(e=>{
+        e.style.backgroundColor="#8CD8CD";})
+    
     document.getElementById("calcCont").innerHTML="";
-    //document.getElementById("rnd").style="visibility:visible;"
+   //document.getElementById("rnd").style="visibility:visible;"
    // document.getElementById("randomTxt").style="visibility:visible;";
 }
 
@@ -161,6 +141,12 @@ function copy() {
   copyText.setSelectionRange(0, 99999); 
 
   navigator.clipboard.writeText(copyText.value);
+}
+function reveal(){
+    const target=document.getElementById("calcs");
+    const position=target.offsetTop;
+    target.scrollIntoView({behavior:"smooth"})//chromium bug :ignores behavior
+    //window.scroll({top:position,left:0,behavior:'smooth'});
 }
 
 document.addEventListener('DOMContentLoaded', function() {
