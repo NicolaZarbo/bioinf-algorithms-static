@@ -1,6 +1,6 @@
 # Bioniformatics algorithms
 
-A collection of applications and usefull links for the bioinformatics course (3rd year of ing INF at polimi).
+A collection of applications and usefull links for the bioinformatics course (computer science engineering at polimi).
 
 [=> The application <=](https://nicolazarbo.github.io/bioinf-html-js-algorithms/)
 
