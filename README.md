@@ -1,8 +1,9 @@
 # Bioniformatics algorithms
 
-A collection of applications and usefull links for the bioinformatics course (computer science engineering at polimi).
+A collection of applications meant to be usefull for the study for the bioinformatics course (computer science engineering at polimi).
 
 [=> The application <=](https://nicolazarbo.github.io/bioinf-html-js-algorithms/)
+This project started as a way to experiment and try using some of the algorithm studied during the course, and later became a place to exercise in UX. 
 
 ## Available calculators
 
@@ -30,11 +31,6 @@ A collection of applications and usefull links for the bioinformatics course (co
   
   -----
   
-## Other info
-
-I've started this project as a way to exercise and learn how these algorithms work.   
-No libraries have been used for algorithms and user-interface, that's why the first may be (they really are) inefficient and the second looks kinda ugly.   
-The random word generator is a [open source piece of code](https://gist.github.com/swenzel/70beac153cdf23803f89), it works similarly to a HMM.
 
 
 
