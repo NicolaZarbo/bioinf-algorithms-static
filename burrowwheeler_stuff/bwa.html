@@ -4,220 +4,22 @@
     <style>
 
 
-
-body{
-    margin:0px;
-    padding:0px;
-}
-.startButton{
-    background-color:green;
-    min-width:50px;
-    width:fit-content;
-    min-height:30px;
-    height:fit-content;
-    color:white;
-    text-align:center;
-    padding: 3px;
-    margin: 3px;
-}
-#decodeButton{
-    background-color:yellow;
-    width:50px;
-    height:30px;
-    color:darkgreen;
-    text-align:center;
-    padding: 3px;
-    margin: 3px;
-}
-#bwa-container{
-    display: grid;
-    box-shadow: 0px 0px 3px 1px rosybrown;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    width: 99%;
-    background-color: lightgreen;
-    height: auto;
-    justify-items: center;
-    align-content: stretch;
-    align-items: center;
-    padding: 4px;
-    grid-row-gap: 47px;
-    grid-column-gap: 2px;
-    animation-duration: 1s;
-
-}
-#bwt{
-    grid-row: 2;
-    grid-column: 2;
-}
-#rotations{
-    width: fit-content;
-    display: grid;
-    grid-template-columns: auto;
-    align-items: center;
-    justify-items: center;
-    grid-row: 2;
-    grid-column: 1;
-}
-        
-#occ{
-    display:grid;        
-    align-items: center;
-    justify-items: center;
-    grid-row: 2;
-    grid-column: 3;
-    width: -webkit-fill-available;
-    width: -moz-available;
-    justify-items: stretch;
-    justify-content: center;
-}
-#C{
-    display: grid;
-    grid-row: 2;
-    grid-template-rows: 1fr 1fr;
-    width: 40px;
-    align-items: center;
-    justify-items: center;
-    grid-column: 4;
-    width: -webkit-fill-available;
-    width: -moz-available;
-    justify-items: stretch;
-    justify-content: center;
-}
-.occ-cell{
-    color: darkgreen;
-    border: solid 1px;
-    padding: 6px;
-}
-.head-cell{
-    background-color: yellow;
-    width: -moz-available;
-    width: -webkit-fill-available;
-}
-.tcolumn{
-    border: solid darkgreen;
-    padding: 10px;
-    width: -webkit-fill-available;
-    width: -moz-available;
-}
-#reverseBwt{
-    animation-timing-function: ease;
-    animation-duration: 1s;
-    min-width: 20%;
-    text-align: center;
-    font-size: xx-large;
-    width: auto;
-    max-width: 60%;
-    min-height: 30px;
-    background-color: lightgreen;
-    border: solid darkgreen 3px;
-    left: 20%;
-    position: relative;
-    visibility: hidden;
-}
-#ppp{
-    color: #90ee90;
-    background-color: #008000;
-    width: fit-content;
-    padding: 2px;
-    margin: 1px;
-}
-#matchingZone{
-    display:flex;
-    flex-wrap: wrap;
-    padding:9px;
-    background-color: lightgreen;
-    flex-direction: column;
-    width: fit-content;
-
-}
-#comands{
-    width: fit-content;
-    padding: 1.5em;
-    height: auto;
-    background-color: #5bc5b5;
-    border: solid #1e4d4f;
-    margin :3px;
-    display: flex;
-    align-items: center;
-}
-.match{
-    color:#008000;
-    font-size: larger;
-    width: fit-content;
-    padding: 2px;
-}
-#mismInsert{
-    background-color: yellow;
-    color: darkgreen;
-    margin:3px;
-    width: 19%;
-    padding-top: 2px;
-}
-#matchContainer{
-    animation-duration: 1s;
-
-}
-#maxError{
-    width:20%;
-    height:70%;
-}
-@media only screen and (max-width: 600px){
-    #bwa-container{
-        display: block;
-    }
-    #mismInsert {
-        width: 75%;
-    }
-}
-.helpBub{
-    background-color:lightgray;
-  width:1.5em;
-  height:1.3em;
-  border-radius:40%;
-  font-size:medium;
-  text-align:center;
-  cursor:help;
-  color: black;
-}
-.helpText{
-    visibility: hidden;
-    color: inherit;
-}
-.helpBub:hover .helpText{
-    visibility: visible;
-    position: relative;
-    left: 1.5em;
-    top:-1em;
-    border: #1e4d4f;
-    border-width: 1px;
-    border-style:solid ;
-    background-color: cornsilk;
-    border-radius: 10%;
-    width: max-content;
-    padding: 3px;
-}
-@keyframes comparsa1 {
-    from {visibility: hidden; transform: translateY(-30px);}
-  to {visibility: visible; transform: translateY(0px);}
-}
-@keyframes comparsa2 {
-    from {visibility: hidden; transform: translatex(-80vw);}
-    to {visibility: visible; transform: translateX(0px);}
-
-}
     </style>
-
+    <link rel="stylesheet" href="bwa.css">
     <script src="bwa.js" ></script>
 </head>
 <body>
     <div id="comands">
-        
-          <input type="text" name="text" id="input"></input>
-          <div id="decoder-help" class="helpBub">?<div class="helpText">to decode a bwt string back use "$" as a start of line symbol</div></div>
-        
+        <div    style=" margin-bottom: 1em;"        >
+            <p class="inText">input</p>
+            <input type="text" placeholder="banana" name="text" id="input"></input>
+        </div>
+      
         <div style="display: flex; flex-wrap:wrap"> 
             <div id="stButton" class="startButton" onclick="fnStart()">encode</div>
             <div id="decodeButton" onclick="decode()">decode</div>
+            <div id="decoder-help" class="helpBub">?<div class="helpText">to decode a bwt string back use "$" as a start of line symbol</div></div>
+
             
         </div>
     </div>
@@ -233,10 +35,19 @@ body{
       <div class="tcolumn" style="grid-column: 4;grid-row: 1;"> C()</div>
       <div id="C"></div>
     </div>
-    <div id="matchContainer" style="display: flex; flex-wrap:wrap">
-        <input id="pattern" type="text">
+    <div style="display: flex;">
+        <div id="matchContainer">
+        <div>
+            <p class="inText">word to match</p>
+            <input id="pattern" placeholder="bnna" type="text">
+        </div>
+        <div id="mismInsert">  
+            <p class="inText">Mismatches allowed</p>
+            <input id="maxError" min="0" value="1" type="number">
+        </div>
         <div class="startButton" onclick="inexactMatching()">Inexact macthing (with bwa)</div>
-        <div id="mismInsert">  Mismatches allowed   <input id="maxError" min="0" value="1" type="number"></div>
     </div>
     <div id="matchingZone"></div>
+    </div>
+   
   </body>

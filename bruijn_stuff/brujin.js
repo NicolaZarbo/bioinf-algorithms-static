@@ -31,6 +31,7 @@ let based;
 let baseCordinates=[];
 let endCordinates=[];
 let pos1;
+let lastnode;
 
 function savePosition(event){
     if(event.target.className!="node")
@@ -41,6 +42,8 @@ function savePosition(event){
         baseCordinates[0] = (nodeRect.x+nodeRect.right)/2 -rect.x;
         baseCordinates[1] = (nodeRect.y+nodeRect.bottom)/2 -rect.y;
         pos1=1;
+        lastnode=event.target;
+        lastnode.style.backgroundColor="darkgreen";
         return;
     }else{
         var rect = document.getElementById("graphZone").getBoundingClientRect();
@@ -49,6 +52,7 @@ function savePosition(event){
         endCordinates[1] = (nodeRect.y+nodeRect.bottom)/2-rect.y;
         drawArrow();
         pos1=0;
+        lastnode.style.backgroundColor="#B5ADF3";
     }
 }
 /**

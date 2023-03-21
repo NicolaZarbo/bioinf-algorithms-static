@@ -1,0 +1,157 @@
+
+#graphZone{
+    background-color: lightgreen;
+    box-shadow: 0px 0px 3px 1px rosybrown;
+    padding: 25px;
+    width: auto;
+    height: auto;
+    min-height: 50%;           
+    display: grid;
+    align-content: space-between;
+    justify-content: space-around;
+    justify-items: center;
+    grid-gap: 3vw;
+}
+.node:hover {
+border: dotted;
+}
+
+.node {
+text-align: center;
+border-radius: 50%;
+height: 60px;
+width: 60px;
+border: solid;
+border-width: 3px;
+border-color: #3634af;
+background-color: #B5ADF3;
+cursor: pointer;
+}
+.edge{
+    border-color:#7DAD3C;
+}
+.button{
+    cursor: pointer;
+    width: fit-content;
+    padding:3px;
+    margin: 3px;
+    height: auto;
+    background-color: green;
+    color: white;
+    border:solid 1px #1e4d4f;
+    border-width: 1px;
+
+}
+.arrowContainer{
+pointer-events: none;
+position:absolute;
+z-index: 10;
+width: auto;
+}
+.arrow{    
+border-left: 20px solid green;
+border-right: 20px solid transparent;
+border-bottom: 20px solid transparent;
+border-top: 20px solid transparent;
+display: inline-block;
+position: relative;
+right: -40px;}
+.stick{
+position: relative;
+top: 22px;
+left: 0px;
+border: 2px solid green;
+width: 80px;
+height:0px;
+}
+#brate{
+position: relative;
+}
+#graphtxt{
+background-color: #5BC5B5;
+color: #1e4d4f;
+width: fit-content;
+padding: 10px;
+font-family: consolas;
+position: relative;
+top: 1.5em;
+}
+#graphInfo{
+padding:10px;
+text-align: center;
+width: 200px;
+color: #1e4d4f;
+border:solid green ;
+background-color: #5BC5B5;
+}
+.comands{
+    width: fit-content;
+    padding: 1.5em;
+    height: auto;
+    background-color: #5bc5b5;
+    border: solid #1e4d4f;
+    margin :3px;
+    display: grid;
+    align-items: center;
+}
+.inText{
+    padding: 3px;
+    margin: 3px;
+}
+#isNonDirectional{
+    width: 2em;
+    height: 2em;
+}
+#pathZone{
+background-color: lightgreen;
+width: fit-content;
+padding: 10px;
+font-size: larger;
+display: flex;
+flex-wrap: wrap;
+}
+.comand-container{
+
+}
+@media only screen and (max-width : 600px) {
+.comands{
+display:block;
+}
+#graphtxt{
+width: auto;
+position: relative;
+top: 1.5em;
+}
+}
+#rows, #columns{
+max-width: 20vw;
+}
+
+.helpBub{
+    background-color:lightgray;
+  width:1.5em;
+  height:1.3em;
+  border-radius:40%;
+  font-size:medium;
+  text-align:center;
+  cursor:help;
+  color: black;
+}
+.helpText{
+    visibility: hidden;
+    color: inherit;
+    width: max-content;
+}
+.helpBub:hover .helpText{
+    visibility: visible;
+    position: relative;
+    left: 1.5em;
+    top:-1em;
+    border: #1e4d4f;
+    border-width: 1px;
+    border-style: solid;
+    background-color: cornsilk;
+    border-radius: 10%;
+    width: max-content;
+    padding: 3px;
+}

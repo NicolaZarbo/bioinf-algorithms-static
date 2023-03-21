@@ -1,29 +1,25 @@
-<head>
-    <title>sequence aligner</title>
-    <script src="seq_aligner.js"></script>
-<style>
-/* 
 #appZone{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     column-gap: 3px;
     width: auto;
-    min-height: 50%;
+    min-height: 20em;
     height: auto;
     padding: 8px;
     background-color: lightgreen;
     box-shadow: 0px 0px 3px 1px rosybrown;
     justify-items: center;
-    align-items: center;
+    align-items:start;
 }
 
 #comands{
-    width: 40%;
+    width: fit-content;
     padding: 10px;
     height: auto;
     background-color: #5bc5b5;
     border: solid #1e4d4f;
     margin :3px;
+    display: grid;
 }
 #tableZone{
     display: grid;
@@ -31,6 +27,16 @@
     bottom: 14vh;
     justify-items:center;
     align-content: center;
+    grid-row: 2;
+    grid-column: 1;
+}
+#alignmentMat{
+    grid-row:1;
+    grid-column:1
+}
+#aling{
+    grid-row:1;
+    grid-column:2
 }
 .table-cell{
     border:solid 1px;
@@ -88,10 +94,16 @@
     height: fit-content;
     padding: 10px;
     flex-wrap: wrap;
+    grid-column: 2;
+    grid-row: 2;
 }
 #points{
     position: sticky;
     bottom: 14vh;
+    grid-column: 2;
+}
+#secBut{
+    display: contents;
 }
 .txt{
     margin: 3px;
@@ -107,7 +119,7 @@
     font-family: consolas;
 }
 .lbutton{
-   padding: 4px;
+    padding: 4px;
     color:white;
     background-color: green;
     box-shadow: 0 0 1px 1px darkgreen;
@@ -126,7 +138,7 @@
     width: -webkit-fill-available;
     width: -moz-available;
 }
-@media only screen and (max-width: 600px){
+/* {
         #appZone{
             display: block;
         }
@@ -137,43 +149,4 @@
             justify-content: center;
         }
 
-    }
-*/
-</style>
-<link rel="stylesheet" href="seq_aligner.css">
-
-</head>
-<body>
-<div id="comands">
-    <div>
-         <p  class='txt'>first word</p>
-        <input id="word1" placeholder="carrot" type="text">
-        <p class='txt'>second word</p>
-        <input id="word2" placeholder="carota" type="text">
-    </div>
-   
-    <div id="points">
-        <p class='txt'> mismatch score</p>
-        <input id="mismatch" value="-1" type="number" max="0">
-        <p class='txt'>Insertion/deletion score </p>
-        <input id="insert_delete"  value="-2" max="0" type="number">
-        <p class='txt'> match score</p>
-        <input id="match" min="1" value="1" type="number">
-    </div>
-
-    <div>
-        <div class="lbutton" onclick="start(false)">Global Sequence Alignment</div>
-        <div class="lbutton" onclick="start(true)">Local Sequence Alignment</div>
-    </div>
-    
-</div>
-<div id="appZone">
-    <div class="tcolumn" id="alignmentMat" >Alignment Matrix</div>
-    <div id="tableZone">
-
-    </div>
-    <div class="tcolumn" id="aling">Matches</div>
-    <div   id="alignments">
-    </div>
-</div>
-</body>
+    }*/

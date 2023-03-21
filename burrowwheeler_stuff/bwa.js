@@ -1,36 +1,29 @@
 let bwt=[];
 let pointTable;
 let setting;
+let input;
 
 
 function showEncoding(){
-    //document.getElementById("decodeButton").style.visibility="hidden";
     document.getElementById("reverseBwt").style.visibility="hidden";
-    document.getElementById("decoder-help").style.visibility="hidden"; 
     document.getElementById("reverseBwt").style.animationName=""; 
 
-    document.getElementById("matchContainer").style.animationName="comparsa2"; 
     document.getElementById("bwa-container").style.animationName="comparsa2"; 
-    document.getElementById("matchContainer").style.visibility="visible"; 
     document.getElementById("bwa-container").style.visibility="visible"; 
-   // document.getElementById("stButton").style.visibility="visible"; 
 }
 function showDecoding(){
-   // document.getElementById("decodeButton").style.visibility="visible";
     document.getElementById("reverseBwt").style.animationName="comparsa1"; 
     document.getElementById("reverseBwt").style.visibility="visible"; 
-    document.getElementById("decoder-help").style.visibility="visible"; 
 
     document.getElementById("bwa-container").style.animationName=""; 
-    document.getElementById("matchContainer").style.animationName=""; 
-    document.getElementById("matchContainer").style.visibility="hidden"; 
     document.getElementById("bwa-container").style.visibility="hidden"; 
-    //document.getElementById("stButton").style.visibility="hidden";
 }
 function fnStart() {
     rst();
+    input="$"+document.getElementById('input').value.toLowerCase().replace("$","");
+    if(input=="$"){alert("missing input word for bwt"); return;}
     showEncoding();
-    const input="$"+document.getElementById('input').value.toLowerCase().replace("$","");
+
    let rotations=[];
     for(let i=0; i<input.length;i++){
         rotations[i]=rotation(input, i);
@@ -241,14 +234,24 @@ let bwtWord;
 let cccc;
 let occOfL;
 function decode(){
-    showDecoding();
     bwtWord=document.getElementById('input').value.toLowerCase().split("");
+    if(bwtWord==""){alert("missing input word for decoding"); return;}
     cccc=createC(bwtWord.join(""));
     occOfL=createOccTab(bwtWord);
     const startIndex=bwtWord.indexOf("$");
-    let result=decodeStep(lfMap(startIndex));
+    let result;
+    try {
+        result=decodeStep(lfMap(startIndex));
+    } catch (error) {
+        alert("'"+bwtWord.join("")+ "' is not a bwt string");
+            return;
+    }
     if (result.length!=bwtWord.length-1)
-        {result=")...ppuS toN("+result;}
+        {//result=")...ppuS toN("+result;
+            alert("'"+bwtWord.join("")+ "' is not a bwt string");
+            return;
+        }
+        showDecoding();
     document.getElementById("reverseBwt").innerHTML =('<div style="font-size: small;">REVERSE:</div>'+ result.split("").reverse().join("").replace("$",""));
 }
 function lfMap(index){
@@ -297,7 +300,7 @@ function rangeInFcolumn(char){
 
 function inexactMatching(){
     if(bwt.length==0){
-        document.getElementById("matchingZone").innerHTML="Please encode a string before";
+        alert("Please encode a string before");
         return;
     }
     bwtWord=bwt;

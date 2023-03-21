@@ -15,10 +15,14 @@ let localAlgin;
 function start(isLocal){
     localAlgin=isLocal;
     getValues();
+    if(word1=="*" || word2=="*") {signalMiss(); return;}
     prepareTable(isLocal);
     recScoring(table.length-1,word2.length-1,isLocal);
     printTable();
     score=0;
+}
+function signalMiss(){
+    alert("missing target word input for alignment")
 }
 /**
  * 
