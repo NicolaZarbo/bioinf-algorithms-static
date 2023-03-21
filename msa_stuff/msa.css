@@ -1,0 +1,127 @@
+.comands{
+    background-color: #5BC5B5;
+    padding: 20px;
+    margin :3px;
+    border: solid #1e4d4f;
+    width: fit-content;
+    height: fit-content;
+}
+
+.nodeButton{
+    background-color: aquamarine;
+    border-radius: 12%;
+    border: solid 2px blue;
+    text-align: center;
+    padding: 12px;
+    width: 35px;
+    z-index: 50;
+    position: relative;    
+    cursor: pointer;
+}
+
+#treeZone{
+    box-shadow: 0 0 1px 1px darkgreen;
+    background-color: lightgreen;
+    display: grid;
+    gap: 9px;
+    width: 80%;
+    padding: 10px;
+}
+.node-selected{
+    background-color: darkgreen;
+}
+.node-used{
+    background-color: darksalmon;
+}
+.stick{
+    border: solid 2px;
+
+}
+#tableZone{
+    display: grid;
+    justify-content: center;
+     width: fit-content;
+    height: fit-content;
+}
+#tableZoneCont{
+    
+    background-color: lightgreen;
+    box-shadow: 0px 0px 3px 1px rosybrown;
+    margin: 15px;
+    padding: 15px;
+}
+.table-cell{
+    background-color: lightgreen;
+    border:solid 1px;
+    width: 39px;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    padding: 4px;
+}
+.head-cell{
+    background-color: yellow;
+}
+#txtTreeCont{
+    width: fit-content;
+    height: fit-content;
+    background: #5BC5B5;
+    margin: 7px;
+    padding: 8px;
+}
+div#txtTarget {
+    
+}
+input:invalid {
+  color: red;
+  box-shadow:inset 0px 0px 2px 1px red;
+}
+#gapCost{
+    right: -22px;
+    position: relative;
+}
+.lbutton{
+   padding: 4px;
+    color:white;
+    background-color: green;
+    box-shadow: 0 0 1px 1px darkgreen;
+    width: fit-content;
+    margin: 5px;
+    cursor: pointer;
+
+}
+
+.helpBub{
+    background-color:lightgray;
+  width:1.5em;
+  height:1.3em;
+  border-radius:40%;
+  font-size:medium;
+  text-align:center;
+  cursor:help;
+  color: black;
+}
+.helpText{
+    visibility: hidden;
+    color: inherit;
+    width: max-content;
+}
+.helpBub:hover .helpText{
+    visibility: visible;
+    position: relative;
+    left: 1.5em;
+    top:-1em;
+    border: #1e4d4f;
+    border-width: 1px;
+    border-style: solid;
+    background-color: cornsilk;
+    border-radius: 10%;
+    width: max-content;
+    padding: 3px;
+}
+@media only screen and (max-width: 600px){
+        #tableZone{
+            position: absolute;
+            top:600px
+        }
+    }
+

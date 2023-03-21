@@ -1,109 +1,15 @@
 <head>
 
-    <title>mas</title>
+    <title>msa</title>
     <script src="msa.js"></script>
-   
-<style>
-
-   
-.comands{
-    background-color: #5BC5B5;
-    padding: 20px;
-    margin :3px;
-    border: solid #1e4d4f;
-    width: fit-content;
-    height: fit-content;
-}
-
-.nodeButton{
-    background-color: aquamarine;
-    border-radius: 12%;
-    border: solid 2px blue;
-    text-align: center;
-    padding: 12px;
-    width: 35px;
-    z-index: 50;
-    position: relative;    
-}
-#treeZone{
-    box-shadow: 0 0 1px 1px darkgreen;
-    background-color: lightgreen;
-    display: grid;
-    gap: 9px;
-    width: 80%;
-    padding: 10px;
-}
-.node-selected{
-    background-color: darkgreen;
-}
-.node-used{
-    background-color: darksalmon;
-}
-.stick{
-    border: solid 2px;
-
-}
-#tableZone{
-    display: grid;
-    justify-content: center;
-    background-color: lightgreen;
-    box-shadow: 0px 0px 3px 1px rosybrown;
-    width: fit-content;
-    height: fit-content;
-    margin: 15px;
-    padding: 15px;
-}
-.table-cell{
-    background-color: lightgreen;
-    border:solid 1px;
-    width: 39px;
-    width: -webkit-fill-available;
-    width: -moz-available;
-    padding: 4px;
-}
-.head-cell{
-    background-color: yellow;
-}
-div#txtTarget {
-    width: fit-content;
-    background: #5BC5B5;
-    margin: 7px;
-    padding: 8px;
-}
-input:invalid {
-  color: red;
-  box-shadow:inset 0px 0px 2px 1px red;
-}
-#gapCost{
-    right: -22px;
-    position: relative;
-}
-.lbutton{
-   padding: 4px;
-    color:white;
-    background-color: green;
-    box-shadow: 0 0 1px 1px darkgreen;
-    width: fit-content;
-    margin: 5px;
-    cursor: pointer;
-
-}
-
-@media only screen and (max-width: 600px){
-        #tableZone{
-            position: absolute;
-            top:600px
-        }
-    }
-
-
-</style>
+    <link rel="stylesheet" href="msa.css">
 </head>
 <body>
+    <p style="color: purple;">This application uses a semplified approach to msa, with a manually built tree and only one profile shown. Its purpose is only to be helpfull as a visualization of the algorithm.</p>
 <div style="display: flex; height: 261px;">
     <div >
         <div class="comands">
-            <div> Number of strings <input onprogress="printInputZone()" onchange="printInputZone()" id="nOfWords" min="0" type="number"></div>
+            <div> Number of strings <input onprogress="printInputZone()" onchange="printInputZone()" id="nOfWords" value="3" min="0" type="number"></div>
             <div id="inputZone"></div>
         </div>
         <div class="comands">  
@@ -111,14 +17,26 @@ input:invalid {
             <div>mismatchesCost <input type="number" id="mismCost" value="-1" max="-1"></div>
         </div>    
     </div>
-    <div id="tableZone"></div>
+    
 </div>
-<div class="lbutton" onclick="treeGenerator()">build new tree</div>
-<div id="treeZone"></div>
-<div id="appZone">
-    <div class="lbutton" onclick="printTree()">print txt guide tree</div>
-    <div id="txtTarget"></div>
-<div class="lbutton" onclick="msa()">global msa</div>
+<div class="lbutton" onclick="treeGenerator()">rebuild tree</div>
 
+<div id="treeZone"></div>
+
+<div id="appZone" style="display: flex; position: relative;top: 1em;">
+    <div class="comands">
+        <div class="lbutton" onclick="printTree()">print txt guide tree</div>
+        <div class="lbutton" onclick="msa()">global msa</div>
+    </div>
+        <div id="tableZoneCont"> 
+            <div style="display: flex;" class="inText">Profile table <div class="helpBub">?<div class="helpText">only a profile is shown</div></div></div>
+            <div id="tableZone"></div>
+        </div>
+    <div id="txtTreeCont">
+        <div class="inText">Textual representetion of the tree </div>
+
+        <div id="txtTarget"></div>
+
+    </div>
 </div>
 </body>

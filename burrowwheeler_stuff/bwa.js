@@ -10,6 +10,8 @@ function showEncoding(){
 
     document.getElementById("bwa-container").style.animationName="comparsa2"; 
     document.getElementById("bwa-container").style.visibility="visible"; 
+    document.getElementById("match-wrap").style.animationName="comparsa2"; 
+    document.getElementById("match-wrap").style.visibility="visible"; 
 }
 function showDecoding(){
     document.getElementById("reverseBwt").style.animationName="comparsa1"; 
@@ -17,6 +19,8 @@ function showDecoding(){
 
     document.getElementById("bwa-container").style.animationName=""; 
     document.getElementById("bwa-container").style.visibility="hidden"; 
+    document.getElementById("match-wrap").style.animationName=""; 
+    document.getElementById("match-wrap").style.visibility="hidden"; 
 }
 function fnStart() {
     rst();

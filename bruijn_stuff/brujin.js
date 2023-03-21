@@ -1,3 +1,6 @@
+document.addEventListener('DOMContentLoaded', function() {
+    graphCreator();
+});
 function graphCreator(){
     directional=(document.getElementById("isNonDirectional").checked);
     let rows=document.getElementById("rows").value;
@@ -142,6 +145,9 @@ function writeInfo(){
     if(graphHasPath()){
         info.textContent=" EULERIAN PATH  ";
         hasPath=true;
+    }else {
+        info.textContent=" NO PATH  ";
+        hasPath=false;
     }
     if(graphHasCircle()){
         hasPath=true;
