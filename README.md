@@ -1,11 +1,14 @@
 # Bioniformatics algorithms
 
-A collection of applications meant to be usefull for the study for the bioinformatics course (computer science engineering at polimi).
-
 [=> The application <=](https://nicolazarbo.github.io/bioinf-html-js-algorithms/)
-This project started as a way to experiment and try using some of the algorithm studied during the course, and later became a place to exercise in UX. 
 
-## Available calculators
+## About this project
+
+A site, hosted by github, with collection of applications meant to be usefull while studying for the Bioinformatics Algotithms course (Computer Science Engineering at polimi).
+
+This project started as a way to personally experiment using some of the algorithm studied during the course, and later became a place to exercise in UX. 
+
+## Available applications
 
 - Burrow Wheeler 
   - Transform
@@ -16,17 +19,18 @@ This project started as a way to experiment and try using some of the algorithm 
 - Sequence Alignment
   - Global alignment
   - Local alignment
-- Bruijn(not completed) graphs   
-(Working in progress, doesn't work with strings yet)
+- Hierholzer   
   - supports directional and non-directional graphs
   - Gui graph generator
-  - Hierholzer Eulerian path finder
-  - Boolean txt matrix generator (usefull for some other applications)
+  - Hierholzer Eulerian path and circle finder
+  - Boolean txt matrix generator (usefull for a third party application)
 - Multiple Sequence alignment
-  - global msa
-  - GUI guide-tree builder 
+  - Global msa profile
+  - GUI manual guide-tree builder
+  - Textual representation of the tree
+
   
-- Tries and suffix Tree
+- Tries 
   - Just a link to a 3rd party application (for now)
   
   -----
