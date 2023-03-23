@@ -1,6 +1,6 @@
 # Bioniformatics algorithms
 
-[=> The application <=](https://nicolazarbo.github.io/bioinf-html-js-algorithms/)
+[=> The application <=](https://nicolazarbo.github.io/bioinf-algorithms-static/)
 
 ## About this project
 
