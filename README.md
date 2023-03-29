@@ -4,9 +4,9 @@
 
 ## About this project
 
-A site, hosted by github, with collection of applications meant to be usefull while studying for the Bioinformatics Algotithms course (Computer Science Engineering at polimi).
+A site, hosted by github, with a collection of applications meant to be usefull while studying for the Bioinformatics Algotithms course (Computer Science Engineering at polimi).
 
-This project started as a way to personally experiment using some of the algorithm studied during the course, and later became a place to exercise in UX. 
+This project started as a way to personally experiment using some of the algorithms studied during the course, and later became a place to exercise in UX. 
 
 ## Available applications
 
